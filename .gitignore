@@ -151,7 +151,7 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
-
+package-lock.json
 ######################
 # Code coverage
 ######################
