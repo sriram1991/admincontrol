@@ -12,9 +12,10 @@ import { PasswordResetFinishComponent } from './password-reset/finish/password-r
 import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
 import { PancardComponent } from './user-service/pancard/pancard.component';
+import { PanDetailManagementComponent } from './user-service/pan-detail-management/pan-detail-management.component';
 
 @NgModule({
-  imports: [SharedModule, RouterModule.forChild(accountState)],
+  imports: [SharedModule, RouterModule.forRoot(accountState)],
   declarations: [
     ActivateComponent,
     RegisterComponent,
@@ -25,6 +26,7 @@ import { PancardComponent } from './user-service/pancard/pancard.component';
     SessionsComponent,
     SettingsComponent,
     PancardComponent,
+    PanDetailManagementComponent,
   ],
 })
 export class AccountModule {}

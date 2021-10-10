@@ -1,4 +1,4 @@
-import { Route } from '@angular/router';
+import { Route, Routes } from '@angular/router';
 
 import { ActivateComponent } from './activate.component';
 
