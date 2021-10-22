@@ -5,8 +5,8 @@ import { PanDetailManagementComponent } from '../pan-detail-management/pan-detai
 import { PancardComponent } from './pancard.component';
 
 export const pancardRoute: Route = {
-  path: 'pancardDetailManagement',
-  component: PanDetailManagementComponent,
+  path: 'pancard',
+  component: PancardComponent,
   canActivate: [UserRouteAccessService],
   // resolve: {
   // user: UserManagementResolve,
