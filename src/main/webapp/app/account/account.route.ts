@@ -1,4 +1,4 @@
-import { Route, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { activateRoute } from './activate/activate.route';
 import { passwordRoute } from './password/password.route';
@@ -8,7 +8,6 @@ import { registerRoute } from './register/register.route';
 import { sessionsRoute } from './sessions/sessions.route';
 import { settingsRoute } from './settings/settings.route';
 import { pancardRoute } from './user-service/pancard/pancard.route';
-import { Account } from 'app/core/auth/account.model';
 
 const ACCOUNT_ROUTES = [
   activateRoute,

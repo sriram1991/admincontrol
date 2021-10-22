@@ -1,6 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserManagementService } from 'app/admin/user-management/service/user-management.service';
 import { User } from 'app/admin/user-management/user-management.model';
@@ -25,10 +25,9 @@ export class PanDetailManagementComponent implements OnInit {
   ascending!: boolean;
 
   constructor(
-    private userService: UserManagementService,
+    // private userService: UserManagementService,
     private accountService: AccountService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private modalService: NgbModal
   ) {}
 
@@ -42,7 +41,7 @@ export class PanDetailManagementComponent implements OnInit {
     this.loadAll();
   }
 
-  trackIdentity(index: number, item: User): number {
+  trackIdentity(): number {
     // it returns no of details for listing
     return 2;
   }
