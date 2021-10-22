@@ -15,7 +15,7 @@ import { PancardComponent } from './user-service/pancard/pancard.component';
 import { PanDetailManagementComponent } from './user-service/pan-detail-management/pan-detail-management.component';
 
 @NgModule({
-  imports: [SharedModule, RouterModule.forRoot(accountState)],
+  imports: [SharedModule, RouterModule.forChild(accountState)],
   declarations: [
     ActivateComponent,
     RegisterComponent,
