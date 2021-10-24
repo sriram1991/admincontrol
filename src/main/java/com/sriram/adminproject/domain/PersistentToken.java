@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
  * @see com.sriram.adminproject.security.PersistentTokenRememberMeServices
  */
 @Entity
-@Table(name = "jhi_persistent_token")
+@Table(name = "persistent_token")
 public class PersistentToken implements Serializable {
 
     private static final long serialVersionUID = 1L;

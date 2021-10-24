@@ -37,7 +37,7 @@ import { ErrorComponent } from './layouts/error/error.component';
     // Set this to true to enable service worker (PWA)
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     HttpClientModule,
-    NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
+    NgxWebstorageModule.forRoot({ caseSensitive: true }),
   ],
   providers: [
     Title,
