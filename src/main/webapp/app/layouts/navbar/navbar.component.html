@@ -54,6 +54,19 @@
               <span>PAN Card service</span>
             </a>
           </li>
+
+          <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+            <a
+              class="dropdown-item"
+              routerLink="account/pancard-management"
+              routerLinkActive="active"
+              (click)="collapseNavbar()"
+              data-cy="accountMenu"
+            >
+              <fa-icon icon="wrench" [fixedWidth]="true"></fa-icon>
+              <span>PAN Card List service</span>
+            </a>
+          </li>
         </ul>
       </li>
       <li
