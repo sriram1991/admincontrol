@@ -14,6 +14,7 @@ import { UserManagementComponent } from 'app/admin/user-management/list/user-man
 import { UserManagementDetailComponent } from 'app/admin/user-management/detail/user-management-detail.component';
 import { UserManagementUpdateComponent } from 'app/admin/user-management/update/user-management-update.component';
 import { PanDetailManagementComponent } from './user-service/pan-detail-management/pan-detail-management.component';
+import { PancardListManagementModule } from '../account/admin-services/pancard-list-management/pancard-list-management.module';
 
 const ACCOUNT_ROUTES = [
   activateRoute,
@@ -29,35 +30,14 @@ const ACCOUNT_ROUTES = [
 export const accountState: Routes = [
   {
     path: '',
-    // component: Account,
     children: ACCOUNT_ROUTES,
   },
   {
     path: 'pancard-management',
+    loadChildren: () =>
+      import('../account/admin-services/pancard-list-management/pancard-list-management.module').then(m => m.PancardListManagementModule),
     data: {
-      defaultSort: 'id,asc',
-    },
-    component: UserManagementComponent,
-  },
-  {
-    path: 'pancard-management/:login/view',
-    component: UserManagementDetailComponent,
-    resolve: {
-      user: UserManagementResolve,
-    },
-  },
-  {
-    path: 'pancard-management/new',
-    component: UserManagementUpdateComponent,
-    resolve: {
-      user: UserManagementResolve,
-    },
-  },
-  {
-    path: 'pancard-management/:login/edit',
-    component: UserManagementUpdateComponent,
-    resolve: {
-      user: UserManagementResolve,
+      pageTitle: 'Pancards-List',
     },
   },
 ];
