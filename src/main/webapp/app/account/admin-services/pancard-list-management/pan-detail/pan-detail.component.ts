@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../pancard-list-management.model';
 
 @Component({
-  selector: 'jhi-pan-detail',
+  selector: 'pan-detail',
   templateUrl: './pan-detail.component.html',
 })
 export class PanDetailComponent implements OnInit {

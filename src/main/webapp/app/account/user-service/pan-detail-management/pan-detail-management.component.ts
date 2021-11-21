@@ -10,7 +10,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { combineLatest } from 'rxjs';
 
 @Component({
-  selector: 'jhi-pan-detail-management',
+  selector: 'pan-detail-management',
   templateUrl: './pan-detail-management.component.html',
   styleUrls: ['./pan-detail-management.component.scss'],
 })

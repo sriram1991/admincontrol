@@ -6,7 +6,7 @@ import { User } from '../pancard-list-management.model';
 import { PancardListManagementService } from '../service/pancard-list-management.service';
 
 @Component({
-  selector: 'jhi-pan-update',
+  selector: 'pan-update',
   templateUrl: './pan-update.component.html',
 })
 export class PanUpdateComponent implements OnInit {

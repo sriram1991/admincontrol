@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, Renderer2 } from '@angular/core';
 
 @Component({
-  selector: 'jhi-password-strength-bar',
+  selector: 'password-strength-bar',
   templateUrl: './password-strength-bar.component.html',
   styleUrls: ['./password-strength-bar.component.scss'],
 })

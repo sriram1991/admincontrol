@@ -3,7 +3,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'jhi-pancard',
+  selector: 'pancard',
   templateUrl: './pancard.component.html',
   styleUrls: ['./pancard.component.scss'],
 })

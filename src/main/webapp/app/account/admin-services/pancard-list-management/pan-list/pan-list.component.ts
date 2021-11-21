@@ -12,7 +12,7 @@ import { User } from '../pancard-list-management.model';
 import { PanDeleteComponent } from '../pan-delete/pan-delete.component';
 
 @Component({
-  selector: 'jhi-pan-list',
+  selector: 'pan-list',
   templateUrl: './pan-list.component.html',
 })
 export class PanListComponent implements OnInit {
