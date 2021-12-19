@@ -1,13 +1,15 @@
-<div>
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8 col-sm-10">
-      <h1 data-cy="loginTitle">Sign in</h1>
+<div class="container pt-5">
+  <div class="card m-auto p-2">
+    <div class="text-center">
+      <img class="card-img-top img-thumbnail img-size" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="" />
+    </div>
+    <div class="card-body">
       <div class="alert alert-danger" *ngIf="authenticationError" data-cy="loginError">
         <strong>Failed to sign in!</strong> Please check your credentials and try again.
       </div>
       <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
         <div class="form-group">
-          <label class="username-label" for="username">Login</label>
+          <!-- <label class="username-label" for="username">Login</label> -->
           <input
             type="text"
             class="form-control"
@@ -40,16 +42,27 @@
           </label>
         </div>
 
-        <button type="submit" class="btn btn-primary" data-cy="submit">Sign in</button>
+        <button type="submit" class="btn btn-primary btn-block" data-cy="submit">Sign in</button>
       </form>
-      <div class="mt-3 alert alert-warning">
+      <!-- <div class="mt-3 alert alert-warning">
         <a class="alert-link" routerLink="/account/reset/request" data-cy="forgetYourPasswordSelector">Did you forget your password?</a>
-      </div>
-
-      <div class="alert alert-warning">
+      </div> -->
+      <!-- <div class="alert alert-warning">
         <span>You don't have an account yet?</span>
         <a class="alert-link" routerLink="/account/register">Register a new account</a>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
+
+<!-- <div>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <h1 data-cy="loginTitle">Sign in</h1>
+    
+      
+    
+      
+    </div>
+  </div>
+</div> -->

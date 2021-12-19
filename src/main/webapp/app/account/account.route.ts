@@ -24,7 +24,7 @@ const ACCOUNT_ROUTES = [
   registerRoute,
   sessionsRoute,
   settingsRoute,
-  pancardRoute,
+  // pancardRoute,
 ];
 
 export const accountState: Routes = [
@@ -38,6 +38,13 @@ export const accountState: Routes = [
       import('../account/admin-services/pancard-list-management/pancard-list-management.module').then(m => m.PancardListManagementModule),
     data: {
       pageTitle: 'Pancards-List',
+    },
+  },
+  {
+    path: 'pancard-management-list',
+    loadChildren: () => import('../account/user-service/pancard/pancard-mngmnt.module').then(m => m.PancardMngmntModule),
+    data: {
+      pageTitle: 'Pancard-request-list',
     },
   },
 ];
