@@ -1,0 +1,16 @@
+entity Pancard {
+	email String maxlength(254)
+	mobile Integer max(13) min(10)
+  	panid String maxlength(11)
+  	aadhaarno Integer max(12)
+  	nameasaadhaar String maxlength(254)
+  	panstatus String maxlength(10)
+  	dob LocalDate
+  	address String maxlength(500)
+}
+
+paginate Pancard with pagination
+
+relationship ManyToOne {
+	Pancard{user} to User
+}
