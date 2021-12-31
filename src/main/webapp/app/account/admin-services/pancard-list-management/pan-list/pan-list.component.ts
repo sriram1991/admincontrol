@@ -8,7 +8,7 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { PancardListManagementService } from '../service/pancard-list-management.service';
-import { User } from '../pancard-list-management.model';
+import { IPancard, User, IUserLogin } from '../pancard-list-management.model';
 import { PanDeleteComponent } from '../pan-delete/pan-delete.component';
 
 @Component({
@@ -18,12 +18,15 @@ import { PanDeleteComponent } from '../pan-delete/pan-delete.component';
 export class PanListComponent implements OnInit {
   currentAccount: Account | null = null;
   users: User[] | null = null;
+  userLogin: IUserLogin = { user: '' };
+  pans: IPancard[] | null = null;
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
   predicate!: string;
   ascending!: boolean;
+  currentDate: Date = new Date();
 
   constructor(
     private userService: PancardListManagementService,
@@ -35,7 +38,12 @@ export class PanListComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => (this.currentAccount = account));
+    console.log(this.currentAccount);
+    this.haddleLoginUserDetails();
     this.handleNavigation();
+  }
+  haddleLoginUserDetails(): void {
+    this.currentAccount?.login === 'admin' ? (this.userLogin.user = 'admin') : (this.userLogin.user = 'user');
   }
 
   setActive(user: User, isActivated: boolean): void {
@@ -74,6 +82,23 @@ export class PanListComponent implements OnInit {
       );
   }
 
+  loadPanList(): void {
+    this.isLoading = true;
+    this.userService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe(
+        (res: HttpResponse<IPancard[]>) => {
+          this.isLoading = false;
+          this.onSuccess(res.body, res.headers);
+        },
+        () => (this.isLoading = false)
+      );
+  }
+
   transition(): void {
     this.router.navigate(['./'], {
       relativeTo: this.activatedRoute.parent,
@@ -91,7 +116,8 @@ export class PanListComponent implements OnInit {
       const sort = (params.get(SORT) ?? data['defaultSort']).split(',');
       this.predicate = sort[0];
       this.ascending = sort[1] === ASC;
-      this.loadAll();
+      // this.loadAll();
+      this.loadPanList();
     });
   }
 
@@ -103,8 +129,10 @@ export class PanListComponent implements OnInit {
     return result;
   }
 
-  private onSuccess(users: User[] | null, headers: HttpHeaders): void {
+  private onSuccess(panlist: IPancard[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
-    this.users = users;
+    // this.users = users;
+    console.log(panlist);
+    this.pans = panlist;
   }
 }

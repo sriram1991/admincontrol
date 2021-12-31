@@ -29,3 +29,22 @@ export class User implements IUser {
     public lastModifiedDate?: Date
   ) {}
 }
+
+export class IPancard implements IUser {
+  constructor(
+    public id?: number,
+    public email?: string,
+    public mobile?: number,
+    public panid?: string,
+    public aadhaarno?: number,
+    public nameasaadhaar?: string,
+    public panstatus?: string,
+    public dob?: string,
+    public address?: string,
+    public user?: null
+  ) {}
+}
+
+export class IUserLogin {
+  constructor(public user?: string) {}
+}

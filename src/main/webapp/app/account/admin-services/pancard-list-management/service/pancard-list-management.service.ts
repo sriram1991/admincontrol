@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { Pagination } from 'app/core/request/request.model';
-import { IUser } from '../pancard-list-management.model';
+import { IUser, IPancard } from '../pancard-list-management.model';
 
 @Injectable({ providedIn: 'root' })
 export class PancardListManagementService {
-  private resourceUrl = this.applicationConfigService.getEndpointFor('api/admin/users');
+  private resourceUrl = this.applicationConfigService.getEndpointFor('api/pancards');
 
   constructor(private http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
 
@@ -25,9 +25,13 @@ export class PancardListManagementService {
     return this.http.get<IUser>(`${this.resourceUrl}/${login}`);
   }
 
-  query(req?: Pagination): Observable<HttpResponse<IUser[]>> {
+  findPanById(id: number): Observable<IPancard> {
+    return this.http.get<IPancard>(`${this.resourceUrl}/${id}`);
+  }
+
+  query(req?: Pagination): Observable<HttpResponse<IPancard[]>> {
     const options = createRequestOption(req);
-    return this.http.get<IUser[]>(this.resourceUrl, { params: options, observe: 'response' });
+    return this.http.get<IPancard[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
   delete(login: string): Observable<{}> {

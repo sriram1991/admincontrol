@@ -13,8 +13,10 @@ export class PancardManagementResolve implements Resolve<IUser> {
   constructor(private service: PancardMngmntService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<IUser> {
+    console.log(route.params['login']);
     const id = route.params['login'];
     if (id) {
+      console.log('id came::', id);
       return this.service.find(id);
     }
     return of(new User());

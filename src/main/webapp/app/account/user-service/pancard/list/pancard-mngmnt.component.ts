@@ -106,5 +106,6 @@ export class PancardMngmntComponent implements OnInit {
   private onSuccess(users: User[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.users = users;
+    console.log(this.users);
   }
 }
