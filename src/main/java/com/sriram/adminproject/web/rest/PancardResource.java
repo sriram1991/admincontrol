@@ -182,6 +182,7 @@ public class PancardResource {
     @GetMapping("/pancards")
     public ResponseEntity<List<Pancard>> getAllPancards(Pageable pageable) {
         log.debug("REST request to get a page of Pancards");
+
         Page<Pancard> page = pancardRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -210,10 +211,29 @@ public class PancardResource {
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<Void> deletePancard(@PathVariable Long id) {
         log.debug("REST request to delete Pancard : {}", id);
-        pancardRepository.deleteById(id);
+        //        pancardRepository.deleteById(id);
+        pancardRepository
+            .findById(id)
+            .map(
+                existingPancard -> {
+                    existingPancard.setPanstatus("disabled");
+                    return existingPancard;
+                }
+            )
+            .map(pancardRepository::save);
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    // Getting all the Pancard list of current User created
+    @GetMapping("/users/pancards")
+    public ResponseEntity<List<Pancard>> getAllUserPancards(Pageable pageable) {
+        log.debug("REST request to get a page of Pancards");
+
+        Page<Pancard> page = pancardRepository.findByUserIsCurrentUser(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }

@@ -8,7 +8,7 @@
     "skipUserManagement": false,
     "skipCheckLengthOfIdentifier": false,
     "skipFakeData": false,
-    "jhiPrefix": "jhi",
+    "jhiPrefix": "",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "testFrameworks": [],
@@ -42,6 +42,8 @@
     "rememberMeKey": "4982342ed473719ac39fab66ce6995d73795177d52d2674dbc02e4cb6de014c323bf829052fe90961554be54998a4450b08a",
     "devServerPort": 4200,
     "clientPackageManager": "npm",
-    "languages": ["en", "fr"]
+    "languages": ["en", "fr"],
+    "entities": ["Pancard"],
+    "lastLiquibaseTimestamp": 1640610564000
   }
 }
