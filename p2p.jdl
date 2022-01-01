@@ -4,9 +4,12 @@ entity Pancard {
   	panid String maxlength(11)
   	aadhaarno Integer max(12)
   	nameasaadhaar String maxlength(254)
-  	panstatus String maxlength(10)
+  	panstatus String
+  	pancardupload String
   	dob LocalDate
   	address String maxlength(500)
+  	createdAt ZonedDateTime
+  	updatedAt ZonedDateTime
 }
 
 paginate Pancard with pagination

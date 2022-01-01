@@ -29,7 +29,10 @@
             <column name="nameasaadhaar" type="varchar(254)">
                 <constraints nullable="true" />
             </column>
-            <column name="panstatus" type="varchar(10)">
+            <column name="panstatus" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pancardupload" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="dob" type="date">
@@ -38,11 +41,19 @@
             <column name="address" type="varchar(500)">
                 <constraints nullable="true" />
             </column>
+            <column name="created_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="updated_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
             <column name="user_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
+        <dropDefaultValue tableName="pancard" columnName="created_at" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="pancard" columnName="updated_at" columnDataType="${datetimeType}"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
@@ -67,8 +78,11 @@
             <column name="aadhaarno" type="numeric"/>
             <column name="nameasaadhaar" type="string"/>
             <column name="panstatus" type="string"/>
+            <column name="pancardupload" type="string"/>
             <column name="dob" type="date"/>
             <column name="address" type="string"/>
+            <column name="created_at" type="${datetimeType}"/>
+            <column name="updated_at" type="${datetimeType}"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

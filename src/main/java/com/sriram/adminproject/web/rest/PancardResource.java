@@ -227,7 +227,7 @@ public class PancardResource {
             .findById(id)
             .map(
                 existingPancard -> {
-                    existingPancard.setPanstatus("DEACTIVATE");
+                    existingPancard.setPanstatus("active");
                     return existingPancard;
                 }
             )

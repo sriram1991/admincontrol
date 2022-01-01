@@ -2,8 +2,11 @@ package com.sriram.adminproject.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 /**
  * A Pancard.
@@ -39,6 +42,9 @@ public class Pancard implements Serializable {
     @Column(name = "nameasaadhaar", length = 254)
     private String nameasaadhaar;
 
+    @Column(name = "pancardupload")
+    private String pancardupload;
+
     @Size(max = 10)
     @Column(name = "panstatus", length = 10)
     private String panstatus;
@@ -50,10 +56,36 @@ public class Pancard implements Serializable {
     @Column(name = "address", length = 500)
     private String address;
 
+    @Generated(GenerationTime.INSERT)
+    @Basic(optional = false)
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @Generated(GenerationTime.ALWAYS)
+    @Column(name = "updated_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
+
     @ManyToOne
     private User user;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public Long getId() {
         return id;
     }
@@ -132,19 +164,6 @@ public class Pancard implements Serializable {
         this.nameasaadhaar = nameasaadhaar;
     }
 
-    public String getPanstatus() {
-        return this.panstatus;
-    }
-
-    public Pancard panstatus(String panstatus) {
-        this.panstatus = panstatus;
-        return this;
-    }
-
-    public void setPanstatus(String panstatus) {
-        this.panstatus = panstatus;
-    }
-
     public LocalDate getDob() {
         return this.dob;
     }
@@ -156,6 +175,14 @@ public class Pancard implements Serializable {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
+    }
+
+    public String getPanstatus() {
+        return panstatus;
+    }
+
+    public void setPanstatus(String panstatus) {
+        this.panstatus = panstatus;
     }
 
     public String getAddress() {
@@ -183,8 +210,6 @@ public class Pancard implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

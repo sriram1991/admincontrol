@@ -34,9 +34,11 @@
     },
     {
       "fieldName": "panstatus",
-      "fieldType": "String",
-      "fieldValidateRules": ["maxlength"],
-      "fieldValidateRulesMaxlength": "10"
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pancardupload",
+      "fieldType": "String"
     },
     {
       "fieldName": "dob",
@@ -47,6 +49,14 @@
       "fieldType": "String",
       "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "500"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "ZonedDateTime"
     }
   ],
   "relationships": [
