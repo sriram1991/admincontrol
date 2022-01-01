@@ -101,7 +101,7 @@
                   <span class="d-none d-md-inline">Delete</span>
                 </button> -->
 
-              <button type="button" (click)="deleteUser(pan)" class="btn btn-danger btn-sm">
+              <button type="button" [disabled]="pan.panstatus == 'DEACTIVATE'" (click)="deleteUser(pan)" class="btn btn-danger btn-sm">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
               </button>
