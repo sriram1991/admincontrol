@@ -34,8 +34,8 @@ export class PancardListManagementService {
     return this.http.get<IPancard[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
-  delete(login: string): Observable<{}> {
-    return this.http.delete(`${this.resourceUrl}/${login}`);
+  delete(id: number): Observable<{}> {
+    return this.http.delete(`${this.resourceUrl}/${id}`);
   }
 
   authorities(): Observable<string[]> {

@@ -54,9 +54,11 @@ export class PanListComponent implements OnInit {
     return item.id!;
   }
 
-  deleteUser(user: User): void {
+  deleteUser(user: IPancard): void {
+    console.log(user);
+
     const modalRef = this.modalService.open(PanDeleteComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.user = user;
+    modalRef.componentInstance.pancard = user;
     // unsubscribe not needed because closed completes on modal close
     modalRef.closed.subscribe(reason => {
       if (reason === 'deleted') {
@@ -74,7 +76,7 @@ export class PanListComponent implements OnInit {
         sort: this.sort(),
       })
       .subscribe(
-        (res: HttpResponse<User[]>) => {
+        (res: HttpResponse<IPancard[]>) => {
           this.isLoading = false;
           this.onSuccess(res.body, res.headers);
         },
