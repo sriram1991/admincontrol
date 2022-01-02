@@ -15,4 +15,6 @@ import org.springframework.stereotype.Repository;
 public interface PancardRepository extends JpaRepository<Pancard, Long> {
     @Query("select pancard from Pancard pancard where pancard.user.login = ?#{principal.username}")
     Page<Pancard> findByUserIsCurrentUser(Pageable pageable);
+
+    List<Pancard> findByUserId(Long user_id);
 }

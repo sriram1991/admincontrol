@@ -2,8 +2,8 @@ package com.sriram.adminproject.web.rest;
 
 import com.sriram.adminproject.domain.Pancard;
 import com.sriram.adminproject.repository.PancardRepository;
-import com.sriram.adminproject.repository.UserRepository;
 import com.sriram.adminproject.security.AuthoritiesConstants;
+import com.sriram.adminproject.service.PancardService;
 import com.sriram.adminproject.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,15 +48,16 @@ public class PancardResource {
 
     private static final String ENTITY_NAME = "pancard";
 
+    @Autowired
+    private PancardService pancardService;
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
     private final PancardRepository pancardRepository;
-    private final UserRepository userRepository;
 
-    public PancardResource(PancardRepository pancardRepository, UserRepository userRepository) {
+    public PancardResource(PancardRepository pancardRepository) {
         this.pancardRepository = pancardRepository;
-        this.userRepository = userRepository;
     }
 
     /**
@@ -222,7 +224,39 @@ public class PancardResource {
     public ResponseEntity<Void> deletePancard(@PathVariable Long id) {
         log.debug("REST request to delete Pancard : {}", id);
         // pancardRepository.deleteById(id);
-        // userRepository.findById(id)
+        pancardRepository
+            .findById(id)
+            .map(
+                existingPancard -> {
+                    existingPancard.setPanstatus("INACTIVE");
+                    return existingPancard;
+                }
+            )
+            .map(pancardRepository::save);
+        return ResponseEntity
+            .noContent()
+            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
+            .build();
+    }
+
+    // ###################### User Pancard API endpoints started #########################################################
+
+    // Getting all the Pancard list of current logged User.
+    @GetMapping("/users/pancards")
+    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.USER + "\")")
+    public ResponseEntity<List<Pancard>> getAllUserPancards(Pageable pageable) {
+        log.debug("REST request to get a page of Pancards");
+
+        Page<Pancard> page = pancardRepository.findByUserIsCurrentUser(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @DeleteMapping("/users/pancards/{id}")
+    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.USER + "\")")
+    public ResponseEntity<Void> deleteUserPancard(@PathVariable Long id) {
+        log.debug("REST request to delete Pancard : {}", id);
+        // pancardRepository.deleteById(id);
         pancardRepository
             .findById(id)
             .map(
@@ -236,17 +270,5 @@ public class PancardResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
-    }
-
-    // User Pancard endpoints started.....
-    // Getting all the Pancard list of current User created
-    @GetMapping("/users/pancards")
-    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.USER + "\")")
-    public ResponseEntity<List<Pancard>> getAllUserPancards(Pageable pageable) {
-        log.debug("REST request to get a page of Pancards");
-
-        Page<Pancard> page = pancardRepository.findByUserIsCurrentUser(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }
