@@ -63,8 +63,8 @@
               Activated
             </button> -->
 
-            <button class="btn btn-danger btn-sm" *ngIf="pan.panstatus == 'DEACTIVATE'">Deactivated</button>
-            <button class="btn btn-success btn-sm" *ngIf="pan.panstatus != 'DEACTIVATE'" [disabled]="false">Activated</button>
+            <button class="btn btn-danger btn-sm" *ngIf="pan.panstatus == 'INACTIVE'">Inactive</button>
+            <button class="btn btn-success btn-sm" *ngIf="pan.panstatus != 'INACTIVE'" [disabled]="false">Active</button>
           </td>
           <td>{{ currentDate | date: 'dd/MM/yy HH:mm' }}</td>
           <!-- <td>
@@ -101,7 +101,7 @@
                   <span class="d-none d-md-inline">Delete</span>
                 </button> -->
 
-              <button type="button" [disabled]="pan.panstatus == 'DEACTIVATE'" (click)="deleteUser(pan)" class="btn btn-danger btn-sm">
+              <button type="button" [disabled]="pan.panstatus == 'INACTIVE'" (click)="deleteUser(pan)" class="btn btn-danger btn-sm">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
               </button>
