@@ -51,6 +51,10 @@
       "fieldValidateRulesMaxlength": "500"
     },
     {
+      "fieldName": "createdBy",
+      "fieldType": "Long"
+    },
+    {
       "fieldName": "createdAt",
       "fieldType": "ZonedDateTime"
     },

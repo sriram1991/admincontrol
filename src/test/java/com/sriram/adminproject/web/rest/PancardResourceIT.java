@@ -86,7 +86,7 @@ class PancardResourceIT {
             .panid(DEFAULT_PANID)
             .aadhaarno(DEFAULT_AADHAARNO)
             .nameasaadhaar(DEFAULT_NAMEASAADHAAR)
-            .panstatus(DEFAULT_PANSTATUS)
+            //            .panstatus(DEFAULT_PANSTATUS)
             .dob(DEFAULT_DOB)
             .address(DEFAULT_ADDRESS);
         return pancard;
@@ -105,7 +105,7 @@ class PancardResourceIT {
             .panid(UPDATED_PANID)
             .aadhaarno(UPDATED_AADHAARNO)
             .nameasaadhaar(UPDATED_NAMEASAADHAAR)
-            .panstatus(UPDATED_PANSTATUS)
+            //            .panstatus(UPDATED_PANSTATUS)
             .dob(UPDATED_DOB)
             .address(UPDATED_ADDRESS);
         return pancard;
@@ -236,7 +236,7 @@ class PancardResourceIT {
             .panid(UPDATED_PANID)
             .aadhaarno(UPDATED_AADHAARNO)
             .nameasaadhaar(UPDATED_NAMEASAADHAAR)
-            .panstatus(UPDATED_PANSTATUS)
+            //            .panstatus(UPDATED_PANSTATUS)
             .dob(UPDATED_DOB)
             .address(UPDATED_ADDRESS);
 
@@ -378,7 +378,7 @@ class PancardResourceIT {
             .panid(UPDATED_PANID)
             .aadhaarno(UPDATED_AADHAARNO)
             .nameasaadhaar(UPDATED_NAMEASAADHAAR)
-            .panstatus(UPDATED_PANSTATUS)
+            //            .panstatus(UPDATED_PANSTATUS)
             .dob(UPDATED_DOB)
             .address(UPDATED_ADDRESS);
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { formatDate } from '@angular/common';
-import { IPancard, User } from '../pancard-list-management.model';
+import { IPancard, Pancard } from '../pancard-list-management.model';
 import { PancardListManagementService } from '../service/pancard-list-management.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { PancardListManagementService } from '../service/pancard-list-management
   templateUrl: './pan-update.component.html',
 })
 export class PanUpdateComponent implements OnInit {
-  user!: User;
+  user!: Pancard;
   pancard!: IPancard;
   authorities: string[] = [];
   isSaving = false;
@@ -29,7 +29,7 @@ export class PanUpdateComponent implements OnInit {
     email: ['', [Validators.minLength(5), Validators.maxLength(254), Validators.email]],
     mobile: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
     nameasaadhaar: ['', [Validators.maxLength(12)]],
-    adhaarno: [''],
+    adhaarno: ['', Validators.minLength(5), Validators.maxLength(11)],
     panid: [],
     panstatus: [''],
     dob: [''],

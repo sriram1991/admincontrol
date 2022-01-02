@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'app/admin/user-management/user-management.model';
+import { Pancard } from 'app/account/admin-services/pancard-list-management/pancard-list-management.model';
+// import { User } from 'app/admin/user-management/user-management.model';
 import { PancardMngmntService } from '../service/pancard-mngmnt.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { PancardMngmntService } from '../service/pancard-mngmnt.service';
   styleUrls: ['./pancard-mngmnt-update.component.scss'],
 })
 export class PancardMngmntUpdateComponent implements OnInit {
-  user!: User;
+  user!: Pancard;
   authorities: string[] = [];
   isSaving = false;
 
@@ -40,7 +41,7 @@ export class PancardMngmntUpdateComponent implements OnInit {
       if (user) {
         this.user = user;
         if (this.user.id === undefined) {
-          this.user.activated = true;
+          // this.user.activated = true;
         }
         this.updateForm(user);
       }
@@ -61,7 +62,7 @@ export class PancardMngmntUpdateComponent implements OnInit {
         () => this.onSaveError()
       );
     } else {
-      this.user.langKey = 'en';
+      // this.user.langKey = 'en';
       this.userService.create(this.user).subscribe(
         () => this.onSaveSuccess(),
         () => this.onSaveError()
@@ -69,27 +70,27 @@ export class PancardMngmntUpdateComponent implements OnInit {
     }
   }
 
-  private updateForm(user: User): void {
+  private updateForm(user: Pancard): void {
     this.editForm.patchValue({
       id: user.id,
-      login: user.login,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      activated: user.activated,
-      langKey: user.langKey,
-      authorities: user.authorities,
+      login: user.email,
+      firstName: user.mobile,
+      lastName: user.panid,
+      email: user.address,
+      activated: user.dob,
+      langKey: user.aadhaarno,
+      authorities: user.nameasaadhaar,
     });
   }
 
-  private updateUser(user: User): void {
-    user.login = this.editForm.get(['login'])!.value;
-    user.firstName = this.editForm.get(['firstName'])!.value;
-    user.lastName = this.editForm.get(['lastName'])!.value;
+  private updateUser(user: Pancard): void {
     user.email = this.editForm.get(['email'])!.value;
-    user.activated = this.editForm.get(['activated'])!.value;
-    user.langKey = this.editForm.get(['langKey'])!.value;
-    user.authorities = this.editForm.get(['authorities'])!.value;
+    user.mobile = this.editForm.get(['mobile'])!.value;
+    user.panid = this.editForm.get(['panid'])!.value;
+    user.address = this.editForm.get(['address'])!.value;
+    user.dob = this.editForm.get(['dob'])!.value;
+    user.aadhaarno = this.editForm.get(['aadhaarno'])!.value;
+    user.nameasaadhaar = this.editForm.get(['nameasaadhaar'])!.value;
   }
 
   private onSaveSuccess(): void {

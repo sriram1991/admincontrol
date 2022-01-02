@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { Pagination } from 'app/core/request/request.model';
-import { IUser, IPancard } from '../pancard-list-management.model';
+import { IPancard } from '../pancard-list-management.model';
 
 @Injectable({ providedIn: 'root' })
 export class PancardListManagementService {
@@ -13,24 +13,24 @@ export class PancardListManagementService {
 
   constructor(private http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
 
-  create(user: IUser): Observable<IUser> {
-    return this.http.post<IUser>(this.resourceUrl, user);
+  create(user: IPancard): Observable<IPancard> {
+    return this.http.post<IPancard>(this.resourceUrl, user);
   }
 
   createPancard(pancard: IPancard): Observable<IPancard> {
     return this.http.post<IPancard>(this.resourceUrl, pancard);
   }
 
-  update(user: IUser): Observable<IUser> {
-    return this.http.put<IUser>(this.resourceUrl, user);
+  update(user: IPancard): Observable<IPancard> {
+    return this.http.put<IPancard>(this.resourceUrl, user);
   }
 
   updatePancard(pancard: IPancard): Observable<IPancard> {
     return this.http.put<IPancard>(this.resourceUrl, pancard);
   }
 
-  find(login: string): Observable<IUser> {
-    return this.http.get<IUser>(`${this.resourceUrl}/${login}`);
+  find(login: string): Observable<IPancard> {
+    return this.http.get<IPancard>(`${this.resourceUrl}/${login}`);
   }
 
   findPanById(id: number): Observable<IPancard> {

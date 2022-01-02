@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <h2>
     <span id="user-management-page-heading" data-cy="userManagementPageHeading">Pancard Request List</span>
 
@@ -35,17 +35,17 @@
       <tbody *ngIf="users">
         <tr *ngFor="let user of users; trackBy: trackIdentity">
           <td>
-            <a [routerLink]="['./', user.login, 'view']">{{ user.id }}</a>
+            <a [routerLink]="['./', user.id, 'view']">{{ user.id }}</a>
           </td>
-          <td>{{ user.login }}</td>
+          <td>{{ user.panid }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated">Deactivated</button>
+            <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.panstatus">Deactivated</button>
             <button
               class="btn btn-success btn-sm"
               (click)="setActive(user, false)"
-              *ngIf="user.activated"
-              [disabled]="!currentAccount || currentAccount.login === user.login"
+              *ngIf="user.panstatus"
+              [disabled]="!currentAccount || currentAccount.login === user.id"
             >
               Activated
             </button>
@@ -56,8 +56,8 @@
             </div>
           </td>
           <td>{{ user.createdDate | date: 'dd/MM/yy HH:mm' }}</td>
-          <td>{{ user.lastModifiedBy }}</td>
-          <td>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</td>
+          <!-- <td>{{ user.lastModifiedBy }}</td> -->
+<!-- <td>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</td>
           <td class="text-right">
             <div class="btn-group">
               <button type="submit" [routerLink]="['./', user.login, 'view']" class="btn btn-info btn-sm">
@@ -103,4 +103,4 @@
       ></ngb-pagination>
     </div>
   </div>
-</div>
+</div> -->

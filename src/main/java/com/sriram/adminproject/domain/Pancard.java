@@ -56,6 +56,9 @@ public class Pancard implements Serializable {
     @Column(name = "address", length = 500)
     private String address;
 
+    @Column(name = "created_by")
+    private Long createdby;
+
     @Generated(GenerationTime.INSERT)
     @Basic(optional = false)
     @Column(name = "created_at")
@@ -198,6 +201,22 @@ public class Pancard implements Serializable {
         this.address = address;
     }
 
+    public String getPancardupload() {
+        return pancardupload;
+    }
+
+    public void setPancardupload(String pancardupload) {
+        this.pancardupload = pancardupload;
+    }
+
+    public Long getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(Long createdby) {
+        this.createdby = createdby;
+    }
+
     public User getUser() {
         return this.user;
     }
@@ -224,23 +243,43 @@ public class Pancard implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "Pancard{" +
-            "id=" + getId() +
-            ", email='" + getEmail() + "'" +
-            ", mobile=" + getMobile() +
-            ", panid='" + getPanid() + "'" +
-            ", aadhaarno=" + getAadhaarno() +
-            ", nameasaadhaar='" + getNameasaadhaar() + "'" +
-            ", panstatus='" + getPanstatus() + "'" +
-            ", dob='" + getDob() + "'" +
-            ", address='" + getAddress() + "'" +
-            "}";
+        return (
+            "Pancard [id=" +
+            id +
+            ", email=" +
+            email +
+            ", mobile=" +
+            mobile +
+            ", panid=" +
+            panid +
+            ", aadhaarno=" +
+            aadhaarno +
+            ", nameasaadhaar=" +
+            nameasaadhaar +
+            ", pancardupload=" +
+            pancardupload +
+            ", panstatus=" +
+            panstatus +
+            ", dob=" +
+            dob +
+            ", address=" +
+            address +
+            ", createdby=" +
+            createdby +
+            ", createdAt=" +
+            createdAt +
+            ", updatedAt=" +
+            updatedAt +
+            ", user=" +
+            user +
+            "]"
+        );
     }
 }

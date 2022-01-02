@@ -53,10 +53,10 @@
       <tbody *ngIf="pans">
         <tr *ngFor="let pan of pans; trackBy: trackIdentity">
           <td>
-            <!-- <a [routerLink]="['./', user.login, 'view']">{{ pan.id }}</a> -->
+            <a [routerLink]="['./', pan.id, 'view']">{{ pan.id }}</a>
             <a>{{ pan.id }}</a>
           </td>
-          <!-- <td>{{ user.login }}</td> -->
+          <td>{{ pan.email }}</td>
           <td>{{ pan.nameasaadhaar }}</td>
           <td>{{ pan.email }}</td>
           <td>

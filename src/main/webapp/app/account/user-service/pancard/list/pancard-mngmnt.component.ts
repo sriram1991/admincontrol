@@ -2,12 +2,13 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Pancard } from 'app/account/admin-services/pancard-list-management/pancard-list-management.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { Account } from 'app/core/auth/account.model';
 import { AccountService } from 'app/core/auth/account.service';
 import { combineLatest } from 'rxjs';
 import { PancardMngmntDeleteDialogComponent } from '../delete/pancard-mngmnt-delete-dialog.component';
-import { User } from '../pancard-mngmnt.model';
+// import { User } from '../pancard-mngmnt.model';
 import { PancardMngmntService } from '../service/pancard-mngmnt.service';
 
 @Component({
@@ -17,7 +18,7 @@ import { PancardMngmntService } from '../service/pancard-mngmnt.service';
 })
 export class PancardMngmntComponent implements OnInit {
   currentAccount: Account | null = null;
-  users: User[] | null = null;
+  users: Pancard[] | null = null;
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -38,15 +39,15 @@ export class PancardMngmntComponent implements OnInit {
     this.handleNavigation();
   }
 
-  setActive(user: User, isActivated: boolean): void {
-    this.userService.update({ ...user, activated: isActivated }).subscribe(() => this.loadAll());
+  setActive(user: Pancard, isActivated: boolean): void {
+    this.userService.update({ ...user }).subscribe(() => this.loadAll());
   }
 
-  trackIdentity(index: number, item: User): number {
+  trackIdentity(index: number, item: Pancard): number {
     return item.id!;
   }
 
-  deleteUser(user: User): void {
+  deleteUser(user: Pancard): void {
     const modalRef = this.modalService.open(PancardMngmntDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.user = user;
     // unsubscribe not needed because closed completes on modal close
@@ -66,7 +67,7 @@ export class PancardMngmntComponent implements OnInit {
         sort: this.sort(),
       })
       .subscribe(
-        (res: HttpResponse<User[]>) => {
+        (res: HttpResponse<Pancard[]>) => {
           this.isLoading = false;
           this.onSuccess(res.body, res.headers);
         },
@@ -103,7 +104,7 @@ export class PancardMngmntComponent implements OnInit {
     return result;
   }
 
-  private onSuccess(users: User[] | null, headers: HttpHeaders): void {
+  private onSuccess(users: Pancard[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.users = users;
     console.log(this.users);

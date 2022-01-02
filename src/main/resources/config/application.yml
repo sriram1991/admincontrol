@@ -20,7 +20,20 @@ management:
       base-path: /management
       exposure:
         include:
-          ['configprops', 'env', 'health', 'info', 'jhimetrics', 'logfile', 'loggers', 'prometheus', 'threaddump', 'caches', 'liquibase']
+          [
+            'configprops',
+            'api-docs',
+            'env',
+            'health',
+            'info',
+            'jhimetrics',
+            'logfile',
+            'loggers',
+            'prometheus',
+            'threaddump',
+            'caches',
+            'liquibase',
+          ]
   endpoint:
     health:
       show-details: when_authorized

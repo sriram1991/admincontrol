@@ -41,6 +41,9 @@
             <column name="address" type="varchar(500)">
                 <constraints nullable="true" />
             </column>
+            <column name="created_by" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="created_at" type="${datetimeType}">
                 <constraints nullable="true" />
             </column>

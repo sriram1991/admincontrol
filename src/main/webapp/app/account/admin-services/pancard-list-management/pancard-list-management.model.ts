@@ -1,36 +1,21 @@
-export interface IUser {
+export interface IPancard {
   id?: number;
-  login?: string;
-  firstName?: string | null;
-  lastName?: string | null;
   email?: string;
-  activated?: boolean;
-  langKey?: string;
-  authorities?: string[];
-  createdBy?: string;
-  createdDate?: Date;
-  lastModifiedBy?: string;
-  lastModifiedDate?: Date;
+  mobile?: number;
+  panid?: string;
+  aadhaarno?: number;
+  nameasaadhaar?: string;
+  pancardupload?: string;
+  panstatus?: string;
+  dob?: Date;
+  address?: string;
+  createdBy?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+  user?: null;
 }
 
-export class User implements IUser {
-  constructor(
-    public id?: number,
-    public login?: string,
-    public firstName?: string | null,
-    public lastName?: string | null,
-    public email?: string,
-    public activated?: boolean,
-    public langKey?: string,
-    public authorities?: string[],
-    public createdBy?: string,
-    public createdDate?: Date,
-    public lastModifiedBy?: string,
-    public lastModifiedDate?: Date
-  ) {}
-}
-
-export class IPancard implements IUser {
+export class Pancard implements IPancard {
   constructor(
     public id?: number,
     public email?: string,
@@ -38,11 +23,13 @@ export class IPancard implements IUser {
     public panid?: string,
     public aadhaarno?: number,
     public nameasaadhaar?: string,
+    public pancardupload?: string,
     public panstatus?: string,
-    public dob?: string,
+    public dob?: Date,
     public address?: string,
-    // public createdAt?: string,
-    // public updatedAt?: string,
+    public createdBy?: number,
+    public createdAt?: Date,
+    public updatedAt?: Date,
     public user?: null
   ) {}
 }

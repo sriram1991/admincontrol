@@ -8,8 +8,9 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { PancardListManagementService } from '../service/pancard-list-management.service';
-import { IPancard, User, IUserLogin } from '../pancard-list-management.model';
+import { IPancard, Pancard, IUserLogin } from '../pancard-list-management.model';
 import { PanDeleteComponent } from '../pan-delete/pan-delete.component';
+import { User } from 'app/admin/user-management/user-management.model';
 
 @Component({
   selector: 'pan-list',
@@ -17,9 +18,9 @@ import { PanDeleteComponent } from '../pan-delete/pan-delete.component';
 })
 export class PanListComponent implements OnInit {
   currentAccount: Account | null = null;
-  users: User[] | null = null;
+  users: Pancard[] | null = null;
   userLogin: IUserLogin = { user: '' };
-  pans: any[] | null = null;
+  pans: IPancard[] | null = null;
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -46,11 +47,11 @@ export class PanListComponent implements OnInit {
     this.currentAccount?.login === 'admin' ? (this.userLogin.user = 'admin') : (this.userLogin.user = 'user');
   }
 
-  setActive(user: User, isActivated: boolean): void {
-    this.userService.update({ ...user, activated: isActivated }).subscribe(() => this.loadAll());
+  setActive(user: IPancard, isActivated: boolean): void {
+    this.userService.update({ ...user }).subscribe(() => this.loadAll());
   }
 
-  trackIdentity(index: number, item: User): number {
+  trackIdentity(index: number, item: Pancard): number {
     return item.id!;
   }
 

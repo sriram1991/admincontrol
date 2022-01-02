@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Route, Routes } from '@angular/router';
-import { IUser } from 'app/account/admin-services/pancard-list-management/pancard-list-management.model';
+import { IPancard, Pancard } from 'app/account/admin-services/pancard-list-management/pancard-list-management.model';
+// import { IUser } from 'app/account/admin-services/pancard-list-management/pancard-list-management.model';
 import { Observable, of } from 'rxjs';
 import { PancardMngmntDetailComponent } from './detail/pancard-mngmnt-detail.component';
 import { PancardMngmntComponent } from './list/pancard-mngmnt.component';
-import { User } from './pancard-mngmnt.model';
+// import { User } from './pancard-mngmnt.model';
 import { PancardMngmntService } from './service/pancard-mngmnt.service';
 import { PancardMngmntUpdateComponent } from './update/pancard-mngmnt-update.component';
 
 @Injectable({ providedIn: 'root' })
-export class PancardManagementResolve implements Resolve<IUser> {
+export class PancardManagementResolve implements Resolve<IPancard> {
   constructor(private service: PancardMngmntService) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IUser> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IPancard> {
     console.log(route.params['login']);
     const id = route.params['login'];
     if (id) {
       console.log('id came::', id);
       return this.service.find(id);
     }
-    return of(new User());
+    return of(new Pancard());
   }
 }
 

@@ -1,13 +1,16 @@
 package com.sriram.adminproject.web.rest;
 
 import com.sriram.adminproject.domain.Pancard;
+import com.sriram.adminproject.domain.User;
 import com.sriram.adminproject.repository.PancardRepository;
 import com.sriram.adminproject.security.AuthoritiesConstants;
+import com.sriram.adminproject.service.DataService;
 import com.sriram.adminproject.service.PancardService;
 import com.sriram.adminproject.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.validation.Valid;
@@ -19,6 +22,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +34,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
@@ -50,6 +55,9 @@ public class PancardResource {
 
     @Autowired
     private PancardService pancardService;
+
+    @Autowired
+    private DataService dataService;
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -145,6 +153,7 @@ public class PancardResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
+        Optional<User> userObj = dataService.getUserWithAuthorities();
         Optional<Pancard> result = pancardRepository
             .findById(pancard.getId())
             .map(
@@ -164,6 +173,9 @@ public class PancardResource {
                     if (pancard.getNameasaadhaar() != null) {
                         existingPancard.setNameasaadhaar(pancard.getNameasaadhaar());
                     }
+                    if (pancard.getPancardupload() != null) {
+                        existingPancard.setPancardupload(pancard.getPancardupload());
+                    }
                     if (pancard.getPanstatus() != null) {
                         existingPancard.setPanstatus(pancard.getPanstatus());
                     }
@@ -172,6 +184,9 @@ public class PancardResource {
                     }
                     if (pancard.getAddress() != null) {
                         existingPancard.setAddress(pancard.getAddress());
+                    }
+                    if (pancard.getCreatedby() != null) {
+                        existingPancard.setCreatedby(userObj.get().getId());
                     }
 
                     return existingPancard;
@@ -244,9 +259,9 @@ public class PancardResource {
     // Getting all the Pancard list of current logged User.
     @GetMapping("/users/pancards")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.USER + "\")")
-    public ResponseEntity<List<Pancard>> getAllUserPancards(Pageable pageable) {
+    public ResponseEntity<List<Pancard>> getUserPancards(Pageable pageable) {
         log.debug("REST request to get a page of Pancards");
-
+        List<Pancard> result = pancardService.getPancardDetailsByCreatedBy();
         Page<Pancard> page = pancardRepository.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -254,14 +269,14 @@ public class PancardResource {
 
     @DeleteMapping("/users/pancards/{id}")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.USER + "\")")
-    public ResponseEntity<Void> deleteUserPancard(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUserPancard(@Valid @PathVariable Long id) {
         log.debug("REST request to delete Pancard : {}", id);
         // pancardRepository.deleteById(id);
         pancardRepository
             .findById(id)
             .map(
                 existingPancard -> {
-                    existingPancard.setPanstatus("active");
+                    existingPancard.setPanstatus("INACTIVE");
                     return existingPancard;
                 }
             )
@@ -270,5 +285,17 @@ public class PancardResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/user/current/details")
+    public ResponseEntity<Object> getCurrentLoggedInUserDetails() {
+        Map<String, Object> result = pancardService.getCurrentLoggedInUserDetails();
+        return new ResponseEntity<Object>(result, (HttpStatus) result.get("statusCode"));
+    }
+
+    @GetMapping("/user/id/{id}/details")
+    public ResponseEntity<Object> getUserDetailsById(@Valid @PathVariable Long id) {
+        Map<String, Object> result = pancardService.getUserDetailsById(id);
+        return new ResponseEntity<Object>(result, (HttpStatus) result.get("statusCode"));
     }
 }

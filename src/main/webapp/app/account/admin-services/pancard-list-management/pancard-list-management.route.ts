@@ -5,7 +5,7 @@ import { PanDetailComponent } from './pan-detail/pan-detail.component';
 import { PanListComponent } from './pan-list/pan-list.component';
 import { PanUpdateComponent } from './pan-update/pan-update.component';
 
-import { User, IUser, IPancard } from './pancard-list-management.model';
+import { IPancard, Pancard } from './pancard-list-management.model';
 import { PancardListManagementService } from './service/pancard-list-management.service';
 // import { UserManagementComponent } from './list/user-management.component';
 // import { UserManagementDetailComponent } from './detail/user-management-detail.component';
@@ -20,7 +20,7 @@ export class PancardListManagement implements Resolve<IPancard> {
     if (id) {
       return this.service.findPanById(id);
     }
-    return of(new IPancard());
+    return of(new Pancard());
   }
 }
 

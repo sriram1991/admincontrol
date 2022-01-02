@@ -8,6 +8,7 @@ entity Pancard {
   	pancardupload String
   	dob LocalDate
   	address String maxlength(500)
+  	createdBy Long
   	createdAt ZonedDateTime
   	updatedAt ZonedDateTime
 }

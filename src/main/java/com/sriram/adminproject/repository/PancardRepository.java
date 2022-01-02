@@ -17,4 +17,6 @@ public interface PancardRepository extends JpaRepository<Pancard, Long> {
     Page<Pancard> findByUserIsCurrentUser(Pageable pageable);
 
     List<Pancard> findByUserId(Long user_id);
+
+    List<Pancard> findByCreatedby(Long user_id);
 }
