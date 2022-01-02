@@ -2,7 +2,7 @@
   <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
     <span class="logo-img"></span>
     <span class="navbar-title">AdminProject</span>
-    <span class="navbar-version">{{ version }}</span>
+    <!-- <span class="navbar-version">{{ version }}</span> -->
   </a>
   <a
     class="navbar-toggler d-lg-none"
@@ -42,7 +42,7 @@
           </span>
         </a>
         <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="user-menu">
-          <li>
+          <li *jhiHasAnyAuthority="['ROLE_USER']">
             <a
               class="dropdown-item"
               routerLink="account/pancard-management-list"

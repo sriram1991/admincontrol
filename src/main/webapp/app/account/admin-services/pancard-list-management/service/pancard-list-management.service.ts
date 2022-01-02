@@ -17,8 +17,16 @@ export class PancardListManagementService {
     return this.http.post<IUser>(this.resourceUrl, user);
   }
 
+  createPancard(pancard: IPancard): Observable<IPancard> {
+    return this.http.post<IPancard>(this.resourceUrl, pancard);
+  }
+
   update(user: IUser): Observable<IUser> {
     return this.http.put<IUser>(this.resourceUrl, user);
+  }
+
+  updatePancard(pancard: IPancard): Observable<IPancard> {
+    return this.http.put<IPancard>(this.resourceUrl, pancard);
   }
 
   find(login: string): Observable<IUser> {

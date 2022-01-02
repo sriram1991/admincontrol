@@ -36,8 +36,12 @@
           </th>
           <th scope="col">Pan Status</th>
           <!-- <th scope="col"><span>Profiles</span></th> -->
-          <th scope="col" jhiSortBy="createdDate">
+          <th scope="col" jhiSortBy="lastModifiedBy">
             <span>Created Date</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span>Updated Date</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th></th>
@@ -66,7 +70,8 @@
             <button class="btn btn-danger btn-sm" *ngIf="pan.panstatus == 'INACTIVE'">Inactive</button>
             <button class="btn btn-success btn-sm" *ngIf="pan.panstatus != 'INACTIVE'" [disabled]="false">Active</button>
           </td>
-          <td>{{ currentDate | date: 'dd/MM/yy HH:mm' }}</td>
+          <td>{{ pan.createdAt | date: 'dd/MM/yy HH:mm' }}</td>
+          <td>{{ pan.updatedAt | date: 'dd/MM/yy HH:mm' }}</td>
           <!-- <td>
             <div *ngFor="let authority of user.authorities">
               <span class="badge badge-info">{{ authority }}</span>
@@ -90,7 +95,7 @@
                 <span class="d-none d-md-inline">Edit</span>
               </button> -->
 
-              <button type="submit" class="btn btn-primary btn-sm">
+              <button type="submit" [routerLink]="['./', 'edit', pan.id]" class="btn btn-primary btn-sm">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline">Edit</span>
               </button>

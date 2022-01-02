@@ -19,7 +19,7 @@ export class PanListComponent implements OnInit {
   currentAccount: Account | null = null;
   users: User[] | null = null;
   userLogin: IUserLogin = { user: '' };
-  pans: IPancard[] | null = null;
+  pans: any[] | null = null;
   isLoading = false;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;

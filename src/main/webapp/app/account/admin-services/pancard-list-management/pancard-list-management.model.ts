@@ -41,6 +41,8 @@ export class IPancard implements IUser {
     public panstatus?: string,
     public dob?: string,
     public address?: string,
+    // public createdAt?: string,
+    // public updatedAt?: string,
     public user?: null
   ) {}
 }

@@ -43,14 +43,14 @@ export const pancardListManagementRoute: Routes = [
     path: 'new',
     component: PanUpdateComponent,
     resolve: {
-      user: PancardListManagement,
+      pancard: PancardListManagement,
     },
   },
   {
-    path: ':login/edit',
+    path: 'edit/:id',
     component: PanUpdateComponent,
     resolve: {
-      user: PancardListManagement,
+      pancard: PancardListManagement,
     },
   },
 ];

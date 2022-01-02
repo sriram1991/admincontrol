@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
       this.openAPIEnabled = profileInfo.openAPIEnabled;
     });
     this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
+    console.log('Accounts::', this.account);
   }
 
   collapseNavbar(): void {
