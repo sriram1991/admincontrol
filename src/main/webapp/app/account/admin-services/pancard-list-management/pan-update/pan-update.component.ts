@@ -29,11 +29,12 @@ export class PanUpdateComponent implements OnInit {
     email: ['', [Validators.minLength(5), Validators.maxLength(254), Validators.email]],
     mobile: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
     nameasaadhaar: ['', [Validators.maxLength(12)]],
-    adhaarno: ['', Validators.minLength(5), Validators.maxLength(11)],
+    adhaarno: ['', [Validators.minLength(5), Validators.maxLength(11)]],
     panid: [],
     panstatus: [''],
     dob: [''],
     address: [''],
+    pancardupload: [''],
   });
 
   constructor(private userService: PancardListManagementService, private route: ActivatedRoute, private fb: FormBuilder) {}
@@ -41,10 +42,9 @@ export class PanUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(({ pancard }) => {
       if (pancard) {
-        // this.user = user;
         this.pancard = pancard;
         if (this.pancard.id === undefined) {
-          // this.pancard.panstatus = 'INACTIVE';
+          this.pancard.panstatus = 'ACTIVE';
         }
         this.updateForm(pancard);
       }
@@ -77,17 +77,6 @@ export class PanUpdateComponent implements OnInit {
   private updateForm(pancard: IPancard): void {
     console.log(pancard);
     this.editForm.patchValue({
-      // For User
-      //  --------------------------------------
-      // id: user.id,
-      // login: user.login,
-      // firstName: user.firstName,
-      // lastName: user.lastName,
-      // email: user.email,
-      // activated: user.activated,
-      // langKey: user.langKey,
-      // authorities: user.authorities,
-
       // For Pancard
       //---------------------------------------
       id: pancard.id,
@@ -97,6 +86,7 @@ export class PanUpdateComponent implements OnInit {
       nameasaadhaar: pancard.nameasaadhaar,
       adhaarno: pancard.aadhaarno,
       panstatus: pancard.panstatus,
+      pancardupload: pancard.pancardupload,
       dob: pancard.dob,
       address: pancard.address,
     });
