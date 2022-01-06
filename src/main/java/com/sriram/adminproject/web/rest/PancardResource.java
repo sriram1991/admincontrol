@@ -5,6 +5,7 @@ import com.sriram.adminproject.domain.User;
 import com.sriram.adminproject.repository.PancardRepository;
 import com.sriram.adminproject.security.AuthoritiesConstants;
 import com.sriram.adminproject.service.DataService;
+import com.sriram.adminproject.service.HelperService;
 import com.sriram.adminproject.service.PancardService;
 import com.sriram.adminproject.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -58,6 +59,9 @@ public class PancardResource {
 
     @Autowired
     private DataService dataService;
+
+    @Autowired
+    private HelperService helperService;
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -186,7 +190,7 @@ public class PancardResource {
                         existingPancard.setAddress(pancard.getAddress());
                     }
                     if (pancard.getCreatedby() != null) {
-                        existingPancard.setCreatedby(userObj.get().getId());
+                        existingPancard.setCreatedby(userObj.get());
                     }
 
                     return existingPancard;
@@ -259,12 +263,10 @@ public class PancardResource {
     // Getting all the Pancard list of current logged User.
     @GetMapping("/users/pancards")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.USER + "\")")
-    public ResponseEntity<List<Pancard>> getUserPancards(Pageable pageable) {
+    public ResponseEntity<Object> getUserPancards() {
         log.debug("REST request to get a page of Pancards");
-        List<Pancard> result = pancardService.getPancardDetailsByCreatedBy();
-        Page<Pancard> page = pancardRepository.findByUserIsCurrentUser(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-        return ResponseEntity.ok().headers(headers).body(page.getContent());
+        Map<String, Object> result = pancardService.getPancardDetailsByCreatedBy();
+        return new ResponseEntity<Object>(result, (HttpStatus) result.get("statusCode"));
     }
 
     @DeleteMapping("/users/pancards/{id}")

@@ -1,7 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPancard } from 'app/account/admin-services/pancard-list-management/pancard-list-management.model';
-// import { IPancard } from 'app/admin/user-management/user-management.model';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { Pagination } from 'app/core/request/request.model';
@@ -11,7 +10,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PancardMngmntService {
-  private resourceUrl = this.applicationConfigService.getEndpointFor('api/admin/users');
+  private resourceUrl = this.applicationConfigService.getEndpointFor('api/users/pancards');
 
   constructor(private http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
 
@@ -27,7 +26,7 @@ export class PancardMngmntService {
     return this.http.get<IPancard>(`${this.resourceUrl}/${login}`);
   }
 
-  query(req?: Pagination): Observable<HttpResponse<IPancard[]>> {
+  query(req?: IPancard): Observable<HttpResponse<IPancard[]>> {
     const options = createRequestOption(req);
     return this.http.get<IPancard[]>(this.resourceUrl, { params: options, observe: 'response' });
   }

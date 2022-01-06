@@ -53,9 +53,9 @@ public class PancardService {
         return pancardRepository.findByUserId(id);
     }
 
-    public List<Pancard> getPancardDetailsByCreatedBy() {
+    public Map<String, Object> getPancardDetailsByCreatedBy() {
         Optional<User> userObj = dataService.getUserWithAuthorities();
-        log.info("created user id :: {}", userObj.get().getId());
-        return pancardRepository.findByCreatedby(userObj.get().getId());
+        return helperService.sendSuccessResponse(dataService.getPancardDetailsByUser(userObj.get()), HttpStatus.OK);
+        //        return helperService.sendSuccessResponse(pancardRepository.findAllByCreatedbyId(userObj.get().getId()), HttpStatus.OK);
     }
 }

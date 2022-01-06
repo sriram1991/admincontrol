@@ -29,8 +29,8 @@ export class PanUpdateComponent implements OnInit {
     email: ['', [Validators.minLength(5), Validators.maxLength(254), Validators.email]],
     mobile: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
     nameasaadhaar: ['', [Validators.maxLength(12)]],
-    adhaarno: ['', [Validators.minLength(5), Validators.maxLength(11)]],
-    panid: [],
+    aadhaarno: ['', [Validators.minLength(5), Validators.maxLength(11)]],
+    panid: [''],
     panstatus: [''],
     dob: [''],
     address: [''],
@@ -65,7 +65,6 @@ export class PanUpdateComponent implements OnInit {
         () => this.onSaveError()
       );
     } else {
-      // this.user.langKey = 'en';
       console.log('payload::', this.pancard);
       this.userService.createPancard(this.pancard).subscribe(
         () => this.onSaveSuccess(),
@@ -84,7 +83,7 @@ export class PanUpdateComponent implements OnInit {
       mobile: pancard.mobile,
       panid: pancard.panid,
       nameasaadhaar: pancard.nameasaadhaar,
-      adhaarno: pancard.aadhaarno,
+      aadhaarno: pancard.aadhaarno,
       panstatus: pancard.panstatus,
       pancardupload: pancard.pancardupload,
       dob: pancard.dob,
@@ -93,13 +92,6 @@ export class PanUpdateComponent implements OnInit {
   }
 
   private updateUser(pancard: IPancard): void {
-    // user.login = this.editForm.get(['login'])!.value;
-    // user.firstName = this.editForm.get(['firstName'])!.value;
-    // user.lastName = this.editForm.get(['lastName'])!.value;
-    // user.email = this.editForm.get(['email'])!.value;
-    // user.activated = this.editForm.get(['activated'])!.value;
-    // user.langKey = this.editForm.get(['langKey'])!.value;
-    // user.authorities = this.editForm.get(['authorities'])!.value;
     pancard.panid = this.editForm.get(['panid'])!.value;
     pancard.nameasaadhaar = this.editForm.get(['nameasaadhaar'])!.value;
     pancard.panstatus = this.editForm.get(['panstatus'])!.value;
@@ -107,6 +99,7 @@ export class PanUpdateComponent implements OnInit {
     pancard.dob = this.editForm.get(['dob'])!.value;
     pancard.email = this.editForm.get(['email'])!.value;
     pancard.mobile = this.editForm.get(['mobile'])!.value;
+    pancard.aadhaarno = this.editForm.get(['aadhaarno'])!.value;
   }
 
   private onSaveSuccess(): void {

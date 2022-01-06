@@ -2,13 +2,12 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Pancard } from 'app/account/admin-services/pancard-list-management/pancard-list-management.model';
+import { IPancard, Pancard } from 'app/account/admin-services/pancard-list-management/pancard-list-management.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { Account } from 'app/core/auth/account.model';
 import { AccountService } from 'app/core/auth/account.service';
 import { combineLatest } from 'rxjs';
 import { PancardMngmntDeleteDialogComponent } from '../delete/pancard-mngmnt-delete-dialog.component';
-// import { User } from '../pancard-mngmnt.model';
 import { PancardMngmntService } from '../service/pancard-mngmnt.service';
 
 @Component({
@@ -62,12 +61,12 @@ export class PancardMngmntComponent implements OnInit {
     this.isLoading = true;
     this.userService
       .query({
-        page: this.page - 1,
-        size: this.itemsPerPage,
-        sort: this.sort(),
+        // page: this.page - 1,
+        // size: this.itemsPerPage,
+        // sort: this.sort(),
       })
       .subscribe(
-        (res: HttpResponse<Pancard[]>) => {
+        (res: HttpResponse<IPancard[]>) => {
           this.isLoading = false;
           this.onSuccess(res.body, res.headers);
         },
@@ -104,9 +103,10 @@ export class PancardMngmntComponent implements OnInit {
     return result;
   }
 
-  private onSuccess(users: Pancard[] | null, headers: HttpHeaders): void {
+  private onSuccess(users: IPancard[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.users = users;
+    console.log('user-pancard :: ');
     console.log(this.users);
   }
 }

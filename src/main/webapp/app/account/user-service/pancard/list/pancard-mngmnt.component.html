@@ -1,4 +1,4 @@
-<!-- <div>
+<div>
   <h2>
     <span id="user-management-page-heading" data-cy="userManagementPageHeading">Pancard Request List</span>
 
@@ -8,7 +8,7 @@
         <span>Refresh List</span>
       </button>
       <button class="btn btn-primary jh-create-entity" [routerLink]="['./new']">
-        <fa-icon icon="plus"></fa-icon> <span>Create a new User</span>
+        <fa-icon icon="plus"></fa-icon> <span>Create a new PAN</span>
       </button>
     </div>
   </h2>
@@ -16,8 +16,8 @@
   <jhi-alert-error></jhi-alert-error>
 
   <jhi-alert></jhi-alert>
-
-  <div class="table-responsive" *ngIf="users">
+  <p>dfjhgjdgshfjdgshjfdgshjhg</p>
+  <div class="table-responsive">
     <table class="table table-striped" aria-describedby="user-management-page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
@@ -41,41 +41,33 @@
           <td>{{ user.email }}</td>
           <td>
             <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.panstatus">Deactivated</button>
-            <button
-              class="btn btn-success btn-sm"
-              (click)="setActive(user, false)"
-              *ngIf="user.panstatus"
-              [disabled]="!currentAccount || currentAccount.login === user.id"
-            >
+            <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.panstatus">
+              <!-- [disabled]="!currentAccount || currentAccount.login === user.id" -->
               Activated
             </button>
           </td>
           <td>
-            <div *ngFor="let authority of user.authorities">
+            <!-- <div *ngFor="let authority of user.authorities">
               <span class="badge badge-info">{{ authority }}</span>
-            </div>
+            </div> -->
           </td>
-          <td>{{ user.createdDate | date: 'dd/MM/yy HH:mm' }}</td>
+          <td>{{ user.createdAt | date: 'dd/MM/yy HH:mm' }}</td>
           <!-- <td>{{ user.lastModifiedBy }}</td> -->
-<!-- <td>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</td>
+          <td>{{ user.updatedAt | date: 'dd/MM/yy HH:mm' }}</td>
           <td class="text-right">
             <div class="btn-group">
-              <button type="submit" [routerLink]="['./', user.login, 'view']" class="btn btn-info btn-sm">
+              <button type="submit" [routerLink]="['./', user.id, 'view']" class="btn btn-info btn-sm">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline">View</span>
               </button>
 
-              <button type="submit" [routerLink]="['./', user.login, 'edit']" queryParamsHandling="merge" class="btn btn-primary btn-sm">
+              <button type="submit" [routerLink]="['./', user.id, 'edit']" queryParamsHandling="merge" class="btn btn-primary btn-sm">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline">Edit</span>
               </button>
 
-              <button
-                type="button"
-                (click)="deleteUser(user)"
-                class="btn btn-danger btn-sm"
-                [disabled]="!currentAccount || currentAccount.login === user.login"
-              >
+              <button type="button" (click)="deleteUser(user)" class="btn btn-danger btn-sm">
+                <!-- [disabled]="!currentAccount || currentAccount.login === user.login" -->
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
               </button>
@@ -103,4 +95,4 @@
       ></ngb-pagination>
     </div>
   </div>
-</div> -->
+</div>

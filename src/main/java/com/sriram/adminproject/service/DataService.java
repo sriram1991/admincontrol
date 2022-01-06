@@ -1,8 +1,12 @@
 package com.sriram.adminproject.service;
 
+import com.sriram.adminproject.domain.Pancard;
 import com.sriram.adminproject.domain.User;
 import com.sriram.adminproject.exception.BadReqException;
+import com.sriram.adminproject.repository.PancardRepository;
 import com.sriram.adminproject.repository.UserRepository;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +24,11 @@ public class DataService {
     private UserService userService;
 
     private final UserRepository userRepository;
+    private final PancardRepository pancardRepository;
 
-    public DataService(UserRepository userRepository) {
+    public DataService(UserRepository userRepository, PancardRepository pancardRepository) {
         this.userRepository = userRepository;
+        this.pancardRepository = pancardRepository;
     }
 
     public Optional<User> getUserWithAuthorities() {
@@ -36,5 +42,10 @@ public class DataService {
             !userObj.isPresent()
         ) return null;
         return userObj.get();
+    }
+
+    // Pancard Methods
+    public List<Pancard> getPancardDetailsByUser(User createdByUser) {
+        return pancardRepository.findByUserId(createdByUser.getId());
     }
 }

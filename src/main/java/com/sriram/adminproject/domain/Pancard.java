@@ -57,7 +57,15 @@ public class Pancard implements Serializable {
     private String address;
 
     @Column(name = "created_by")
-    private Long createdby;
+    private User createdby;
+
+    public User getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(User createdby) {
+        this.createdby = createdby;
+    }
 
     @Generated(GenerationTime.INSERT)
     @Basic(optional = false)
@@ -207,14 +215,6 @@ public class Pancard implements Serializable {
 
     public void setPancardupload(String pancardupload) {
         this.pancardupload = pancardupload;
-    }
-
-    public Long getCreatedby() {
-        return createdby;
-    }
-
-    public void setCreatedby(Long createdby) {
-        this.createdby = createdby;
     }
 
     public User getUser() {

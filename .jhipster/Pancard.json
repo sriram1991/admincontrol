@@ -51,7 +51,7 @@
       "fieldValidateRulesMaxlength": "500"
     },
     {
-      "fieldName": "createdBy",
+      "fieldName": "createdby",
       "fieldType": "Long"
     },
     {

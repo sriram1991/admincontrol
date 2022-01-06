@@ -9,7 +9,7 @@ export interface IPancard {
   panstatus?: string;
   dob?: Date;
   address?: string;
-  createdBy?: number;
+  createdby?: number;
   createdAt?: Date;
   updatedAt?: Date;
   user?: null;
@@ -27,7 +27,7 @@ export class Pancard implements IPancard {
     public panstatus?: string,
     public dob?: Date,
     public address?: string,
-    public createdBy?: number,
+    public createdby?: number,
     public createdAt?: Date,
     public updatedAt?: Date,
     public user?: null
