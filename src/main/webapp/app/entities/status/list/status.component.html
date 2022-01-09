@@ -1,0 +1,78 @@
+<div>
+  <h2 id="page-heading" data-cy="StatusHeading">
+    <span sysTranslate="psApp.status.home.title">Statuses</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span sysTranslate="psApp.status.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-status"
+        [routerLink]="['/status/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span sysTranslate="psApp.status.home.createLabel"> Create a new Status </span>
+      </button>
+    </div>
+  </h2>
+
+  <sys-alert-error></sys-alert-error>
+
+  <sys-alert></sys-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="statuses?.length === 0">
+    <span sysTranslate="psApp.status.home.notFound">No statuses found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="statuses && statuses.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span sysTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span sysTranslate="psApp.status.name">Name</span></th>
+          <th scope="col"><span sysTranslate="psApp.status.sequenceNo">Sequence No</span></th>
+          <th scope="col"><span sysTranslate="psApp.status.description">Description</span></th>
+          <th scope="col"><span sysTranslate="psApp.status.category">Category</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let status of statuses; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/status', status.id, 'view']">{{ status.id }}</a>
+          </td>
+          <td>{{ status.name }}</td>
+          <td>{{ status.sequenceNo }}</td>
+          <td>{{ status.description }}</td>
+          <td>
+            <div *ngIf="status.category">
+              <a [routerLink]="['/status-category', status.category?.id, 'view']">{{ status.category?.name }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/status', status.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/status', status.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(status)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

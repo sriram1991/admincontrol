@@ -1,0 +1,27 @@
+{
+  "psApp": {
+    "status": {
+      "home": {
+        "title": "Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "కొత్త Status  సృష్టించండి",
+        "createOrEditLabel": "Status సృష్టించండి లేదా సవరించండి",
+        "notFound": "No Statuses found"
+      },
+      "created": "{{ param }} ఐడీ తో ఒక కొత్త Status సృష్టించబడినది",
+      "updated": "{{ param }} ఐడీ తో ఒక కొత్త Status సవరించబడినది",
+      "deleted": "{{ param }} ఐడీ తో ఒక కొత్త Status తొలగించబడినది",
+      "delete": {
+        "question": "మీరు Status {{ id }} ఖచ్చితంగా తొలగించాలనుకుంటున్నారా?"
+      },
+      "detail": {
+        "title": "Status"
+      },
+      "id": "ID",
+      "name": "Name",
+      "sequenceNo": "Sequence No",
+      "description": "Description",
+      "category": "Category"
+    }
+  }
+}

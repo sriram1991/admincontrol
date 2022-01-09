@@ -1,0 +1,25 @@
+{
+  "psApp": {
+    "partyType": {
+      "home": {
+        "title": "PartyTypes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Party Type बनाएँ",
+        "createOrEditLabel": "Party Type बनाएँ या संपादित करें",
+        "notFound": "No Party Types found"
+      },
+      "created": "एक नया Party Type [identifier: {{ param }}] तैयार है",
+      "updated": "एक Party Type [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Party Type [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Party Type [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Party Type"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description"
+    }
+  }
+}

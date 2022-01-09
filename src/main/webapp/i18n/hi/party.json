@@ -1,0 +1,35 @@
+{
+  "psApp": {
+    "party": {
+      "home": {
+        "title": "Parties",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Party बनाएँ",
+        "createOrEditLabel": "Party बनाएँ या संपादित करें",
+        "notFound": "No Parties found"
+      },
+      "created": "एक नया Party [identifier: {{ param }}] तैयार है",
+      "updated": "एक Party [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Party [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Party [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Party"
+      },
+      "id": "ID",
+      "firstName": "First Name",
+      "middleName": "Middle Name",
+      "lastName": "Last Name",
+      "gender": "Gender",
+      "birthDate": "Birth Date",
+      "mobileNumber": "Mobile Number",
+      "email": "Email",
+      "isTemporaryPassword": "Is Temporary Password",
+      "profileImageUrl": "Profile Image Url",
+      "notes": "Notes",
+      "user": "User",
+      "partyType": "Party Type"
+    }
+  }
+}

@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="PostalAddressHeading">
+    <span sysTranslate="psApp.postalAddress.home.title">Postal Addresses</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span sysTranslate="psApp.postalAddress.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-postal-address"
+        [routerLink]="['/postal-address/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span sysTranslate="psApp.postalAddress.home.createLabel"> Create a new Postal Address </span>
+      </button>
+    </div>
+  </h2>
+
+  <sys-alert-error></sys-alert-error>
+
+  <sys-alert></sys-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="postalAddresses?.length === 0">
+    <span sysTranslate="psApp.postalAddress.home.notFound">No postalAddresses found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="postalAddresses && postalAddresses.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span sysTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span sysTranslate="psApp.postalAddress.toName">To Name</span></th>
+          <th scope="col"><span sysTranslate="psApp.postalAddress.address1">Address 1</span></th>
+          <th scope="col"><span sysTranslate="psApp.postalAddress.address2">Address 2</span></th>
+          <th scope="col"><span sysTranslate="psApp.postalAddress.city">City</span></th>
+          <th scope="col"><span sysTranslate="psApp.postalAddress.landmark">Landmark</span></th>
+          <th scope="col"><span sysTranslate="psApp.postalAddress.postalCode">Postal Code</span></th>
+          <th scope="col"><span sysTranslate="psApp.postalAddress.isIndianAddress">Is Indian Address</span></th>
+          <th scope="col"><span sysTranslate="psApp.postalAddress.note">Note</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let postalAddress of postalAddresses; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/postal-address', postalAddress.id, 'view']">{{ postalAddress.id }}</a>
+          </td>
+          <td>{{ postalAddress.toName }}</td>
+          <td>{{ postalAddress.address1 }}</td>
+          <td>{{ postalAddress.address2 }}</td>
+          <td>{{ postalAddress.city }}</td>
+          <td>{{ postalAddress.landmark }}</td>
+          <td>{{ postalAddress.postalCode }}</td>
+          <td>{{ postalAddress.isIndianAddress }}</td>
+          <td>{{ postalAddress.note }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/postal-address', postalAddress.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/postal-address', postalAddress.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(postalAddress)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

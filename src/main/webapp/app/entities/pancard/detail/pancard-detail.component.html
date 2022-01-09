@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pancard">
+      <h2 data-cy="pancardDetailsHeading"><span sysTranslate="psApp.pancard.detail.title">Pancard</span></h2>
+
+      <hr />
+
+      <sys-alert-error></sys-alert-error>
+
+      <sys-alert></sys-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span sysTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ pancard.id }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.panNumber">Pan Number</span></dt>
+        <dd>
+          <span>{{ pancard.panNumber }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.aadhaarNumber">Aadhaar Number</span></dt>
+        <dd>
+          <span>{{ pancard.aadhaarNumber }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.aadhaarName">Aadhaar Name</span></dt>
+        <dd>
+          <span>{{ pancard.aadhaarName }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.birthDate">Birth Date</span></dt>
+        <dd>
+          <span>{{ pancard.birthDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.imageUrl">Image Url</span></dt>
+        <dd>
+          <span>{{ pancard.imageUrl }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ pancard.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ pancard.updatedAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.postalAddress">Postal Address</span></dt>
+        <dd>
+          <div *ngIf="pancard.postalAddress">
+            <a [routerLink]="['/postal-address', pancard.postalAddress?.id, 'view']">{{ pancard.postalAddress?.id }}</a>
+          </div>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.status">Status</span></dt>
+        <dd>
+          <div *ngIf="pancard.status">
+            <a [routerLink]="['/status', pancard.status?.id, 'view']">{{ pancard.status?.name }}</a>
+          </div>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.party">Party</span></dt>
+        <dd>
+          <div *ngIf="pancard.party">
+            <a [routerLink]="['/party', pancard.party?.id, 'view']">{{ pancard.party?.id }}</a>
+          </div>
+        </dd>
+        <dt><span sysTranslate="psApp.pancard.modified">Modified</span></dt>
+        <dd>
+          <span>{{ pancard.modified?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span sysTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pancard', pancard.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span sysTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

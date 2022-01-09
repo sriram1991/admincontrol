@@ -1,0 +1,96 @@
+<div>
+  <h2 id="page-heading" data-cy="PartyHeading">
+    <span sysTranslate="psApp.party.home.title">Parties</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span sysTranslate="psApp.party.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-party"
+        [routerLink]="['/party/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span sysTranslate="psApp.party.home.createLabel"> Create a new Party </span>
+      </button>
+    </div>
+  </h2>
+
+  <sys-alert-error></sys-alert-error>
+
+  <sys-alert></sys-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="parties?.length === 0">
+    <span sysTranslate="psApp.party.home.notFound">No parties found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="parties && parties.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span sysTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.firstName">First Name</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.middleName">Middle Name</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.lastName">Last Name</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.gender">Gender</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.birthDate">Birth Date</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.mobileNumber">Mobile Number</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.email">Email</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.isTemporaryPassword">Is Temporary Password</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.profileImageUrl">Profile Image Url</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.notes">Notes</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.user">User</span></th>
+          <th scope="col"><span sysTranslate="psApp.party.partyType">Party Type</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let party of parties; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/party', party.id, 'view']">{{ party.id }}</a>
+          </td>
+          <td>{{ party.firstName }}</td>
+          <td>{{ party.middleName }}</td>
+          <td>{{ party.lastName }}</td>
+          <td sysTranslate="{{ 'psApp.Gender.' + party.gender }}">{{ party.gender }}</td>
+          <td>{{ party.birthDate | formatMediumDate }}</td>
+          <td>{{ party.mobileNumber }}</td>
+          <td>{{ party.email }}</td>
+          <td>{{ party.isTemporaryPassword }}</td>
+          <td>{{ party.profileImageUrl }}</td>
+          <td>{{ party.notes }}</td>
+          <td>
+            {{ party.user?.login }}
+          </td>
+          <td>
+            <div *ngIf="party.partyType">
+              <a [routerLink]="['/party-type', party.partyType?.id, 'view']">{{ party.partyType?.name }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/party', party.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/party', party.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(party)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Pancard.
+    -->
+    <changeSet id="20220109090320-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="postal_address_id"
+                                 baseTableName="pancard"
+                                 constraintName="fk_pancard__postal_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="postal_address"/>
+
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="pancard"
+                                 constraintName="fk_pancard__status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="status"/>
+
+        <addForeignKeyConstraint baseColumnNames="party_id"
+                                 baseTableName="pancard"
+                                 constraintName="fk_pancard__party_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="party"/>
+
+        <addForeignKeyConstraint baseColumnNames="modified_id"
+                                 baseTableName="pancard"
+                                 constraintName="fk_pancard__modified_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sys_user"/>
+    </changeSet>
+</databaseChangeLog>

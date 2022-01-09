@@ -1,0 +1,97 @@
+application {
+  config {
+    databaseType sql
+    devDatabaseType mysql
+    enableHibernateCache true
+    enableSwaggerCodegen false
+    enableTranslation true
+    jhiPrefix sys
+    languages [en, hi, te]
+    nativeLanguage en
+    packageName com.ps
+    prodDatabaseType mysql
+    serviceDiscoveryType false
+    skipClient false
+    skipServer false
+    testFrameworks [gatling, cucumber, protractor]
+    websocket spring-websocket
+    applicationType monolith
+    baseName ps
+    serverPort 8080
+    authenticationType jwt
+    cacheProvider hazelcast
+    buildTool maven
+    clientPackageManager npm
+    clientFramework angularX
+  }
+  entities *
+}
+
+entity StatusCategory {
+  name String unique maxlength(60)
+  description String maxlength(100)
+}
+
+entity Status {
+  name String unique maxlength(60)
+  sequenceNo Integer
+  description String maxlength(100)
+}
+
+entity PartyType {
+	name String unique maxlength(25)
+	description String maxlength(60)
+}
+
+entity Party {
+	firstName String maxlength(60)
+	middleName String maxlength(60)
+	lastName String maxlength(60)
+	gender Gender
+	birthDate LocalDate
+	mobileNumber String maxlength(20)
+	email String minlength(5) maxlength(75)
+	isTemporaryPassword Boolean
+	profileImageUrl String
+	notes TextBlob
+}
+
+enum Gender {
+  MALE,
+  FEMALE,
+  OTHER
+}
+
+entity PostalAddress {
+	toName String maxlength(100)
+  	address1 String maxlength(200)
+  	address2 String maxlength(200)
+  	city String maxlength(60)
+  	landmark String maxlength(60)
+  	postalCode String maxlength(10)
+  	isIndianAddress Boolean
+  	note String maxlength(255)
+}
+
+entity Pancard {
+  panNumber String maxlength(15)
+  aadhaarNumber String maxlength(12)
+  aadhaarName String maxlength(200)
+  birthDate LocalDate
+  imageUrl String
+  createdAt ZonedDateTime
+  updatedAt ZonedDateTime
+}
+
+relationship ManyToOne {
+	Status{category(name)} to StatusCategory
+	Party{partyType(name)} to PartyType
+	Pancard{postalAddress} to PostalAddress
+	Pancard{status(name)} to Status
+	Pancard{party} to Party
+	Pancard{modified} to User
+}
+
+relationship OneToOne {
+  Party{user(login)} to User
+}

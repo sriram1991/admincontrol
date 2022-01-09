@@ -1,0 +1,31 @@
+{
+  "psApp": {
+    "postalAddress": {
+      "home": {
+        "title": "PostalAddresses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Postal Address बनाएँ",
+        "createOrEditLabel": "Postal Address बनाएँ या संपादित करें",
+        "notFound": "No Postal Addresses found"
+      },
+      "created": "एक नया Postal Address [identifier: {{ param }}] तैयार है",
+      "updated": "एक Postal Address [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Postal Address [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Postal Address [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Postal Address"
+      },
+      "id": "ID",
+      "toName": "To Name",
+      "address1": "Address 1",
+      "address2": "Address 2",
+      "city": "City",
+      "landmark": "Landmark",
+      "postalCode": "Postal Code",
+      "isIndianAddress": "Is Indian Address",
+      "note": "Note"
+    }
+  }
+}

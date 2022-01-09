@@ -1,0 +1,35 @@
+{
+  "psApp": {
+    "party": {
+      "home": {
+        "title": "Parties",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Party",
+        "createOrEditLabel": "Create or edit a Party",
+        "notFound": "No Parties found"
+      },
+      "created": "A new Party is created with identifier {{ param }}",
+      "updated": "A Party is updated with identifier {{ param }}",
+      "deleted": "A Party is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Party {{ id }}?"
+      },
+      "detail": {
+        "title": "Party"
+      },
+      "id": "ID",
+      "firstName": "First Name",
+      "middleName": "Middle Name",
+      "lastName": "Last Name",
+      "gender": "Gender",
+      "birthDate": "Birth Date",
+      "mobileNumber": "Mobile Number",
+      "email": "Email",
+      "isTemporaryPassword": "Is Temporary Password",
+      "profileImageUrl": "Profile Image Url",
+      "notes": "Notes",
+      "user": "User",
+      "partyType": "Party Type"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="party">
+      <h2 data-cy="partyDetailsHeading"><span sysTranslate="psApp.party.detail.title">Party</span></h2>
+
+      <hr />
+
+      <sys-alert-error></sys-alert-error>
+
+      <sys-alert></sys-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span sysTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ party.id }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ party.firstName }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.middleName">Middle Name</span></dt>
+        <dd>
+          <span>{{ party.middleName }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ party.lastName }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.gender">Gender</span></dt>
+        <dd>
+          <span sysTranslate="{{ 'psApp.Gender.' + party.gender }}">{{ party.gender }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.birthDate">Birth Date</span></dt>
+        <dd>
+          <span>{{ party.birthDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.mobileNumber">Mobile Number</span></dt>
+        <dd>
+          <span>{{ party.mobileNumber }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.email">Email</span></dt>
+        <dd>
+          <span>{{ party.email }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.isTemporaryPassword">Is Temporary Password</span></dt>
+        <dd>
+          <span>{{ party.isTemporaryPassword }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.profileImageUrl">Profile Image Url</span></dt>
+        <dd>
+          <span>{{ party.profileImageUrl }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.notes">Notes</span></dt>
+        <dd>
+          <span>{{ party.notes }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.user">User</span></dt>
+        <dd>
+          <span>{{ party.user?.login }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.party.partyType">Party Type</span></dt>
+        <dd>
+          <div *ngIf="party.partyType">
+            <a [routerLink]="['/party-type', party.partyType?.id, 'view']">{{ party.partyType?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span sysTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/party', party.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span sysTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

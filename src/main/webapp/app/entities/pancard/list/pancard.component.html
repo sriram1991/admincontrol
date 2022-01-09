@@ -1,0 +1,112 @@
+<div>
+  <h2 id="page-heading" data-cy="PancardHeading">
+    <span sysTranslate="psApp.pancard.home.title">Pancards</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span sysTranslate="psApp.pancard.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pancard"
+        [routerLink]="['/pancard/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span sysTranslate="psApp.pancard.home.createLabel"> Create a new Pancard </span>
+      </button>
+    </div>
+  </h2>
+
+  <sys-alert-error></sys-alert-error>
+
+  <sys-alert></sys-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pancards?.length === 0">
+    <span sysTranslate="psApp.pancard.home.notFound">No pancards found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="pancards && pancards.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span sysTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.panNumber">Pan Number</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.aadhaarNumber">Aadhaar Number</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.aadhaarName">Aadhaar Name</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.birthDate">Birth Date</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.imageUrl">Image Url</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.createdAt">Created At</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.updatedAt">Updated At</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.postalAddress">Postal Address</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.status">Status</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.party">Party</span></th>
+          <th scope="col"><span sysTranslate="psApp.pancard.modified">Modified</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pancard of pancards; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pancard', pancard.id, 'view']">{{ pancard.id }}</a>
+          </td>
+          <td>{{ pancard.panNumber }}</td>
+          <td>{{ pancard.aadhaarNumber }}</td>
+          <td>{{ pancard.aadhaarName }}</td>
+          <td>{{ pancard.birthDate | formatMediumDate }}</td>
+          <td>{{ pancard.imageUrl }}</td>
+          <td>{{ pancard.createdAt | formatMediumDatetime }}</td>
+          <td>{{ pancard.updatedAt | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="pancard.postalAddress">
+              <a [routerLink]="['/postal-address', pancard.postalAddress?.id, 'view']">{{ pancard.postalAddress?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="pancard.status">
+              <a [routerLink]="['/status', pancard.status?.id, 'view']">{{ pancard.status?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="pancard.party">
+              <a [routerLink]="['/party', pancard.party?.id, 'view']">{{ pancard.party?.id }}</a>
+            </div>
+          </td>
+          <td>
+            {{ pancard.modified?.id }}
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/pancard', pancard.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/pancard', pancard.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(pancard)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div>
+  <h2 id="page-heading" data-cy="StatusCategoryHeading">
+    <span sysTranslate="psApp.statusCategory.home.title">Status Categories</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span sysTranslate="psApp.statusCategory.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-status-category"
+        [routerLink]="['/status-category/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span sysTranslate="psApp.statusCategory.home.createLabel"> Create a new Status Category </span>
+      </button>
+    </div>
+  </h2>
+
+  <sys-alert-error></sys-alert-error>
+
+  <sys-alert></sys-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="statusCategories?.length === 0">
+    <span sysTranslate="psApp.statusCategory.home.notFound">No statusCategories found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="statusCategories && statusCategories.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span sysTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span sysTranslate="psApp.statusCategory.name">Name</span></th>
+          <th scope="col"><span sysTranslate="psApp.statusCategory.description">Description</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let statusCategory of statusCategories; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/status-category', statusCategory.id, 'view']">{{ statusCategory.id }}</a>
+          </td>
+          <td>{{ statusCategory.name }}</td>
+          <td>{{ statusCategory.description }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/status-category', statusCategory.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/status-category', statusCategory.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(statusCategory)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" sysTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

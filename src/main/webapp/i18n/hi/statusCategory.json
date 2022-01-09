@@ -1,0 +1,25 @@
+{
+  "psApp": {
+    "statusCategory": {
+      "home": {
+        "title": "StatusCategories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Status Category बनाएँ",
+        "createOrEditLabel": "Status Category बनाएँ या संपादित करें",
+        "notFound": "No Status Categories found"
+      },
+      "created": "एक नया Status Category [identifier: {{ param }}] तैयार है",
+      "updated": "एक Status Category [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Status Category [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Status Category [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Status Category"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description"
+    }
+  }
+}

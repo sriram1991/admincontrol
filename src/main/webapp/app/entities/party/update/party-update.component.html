@@ -1,0 +1,219 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="sys-party-heading" data-cy="PartyCreateUpdateHeading" sysTranslate="psApp.party.home.createOrEditLabel">
+        Create or edit a Party
+      </h2>
+
+      <div>
+        <sys-alert-error></sys-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" sysTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.firstName" for="field_firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+          <div *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('firstName')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 60 }"
+            >
+              This field cannot be longer than 60 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.middleName" for="field_middleName">Middle Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="middleName"
+            id="field_middleName"
+            data-cy="middleName"
+            formControlName="middleName"
+          />
+          <div *ngIf="editForm.get('middleName')!.invalid && (editForm.get('middleName')!.dirty || editForm.get('middleName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('middleName')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 60 }"
+            >
+              This field cannot be longer than 60 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.lastName" for="field_lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+          <div *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastName')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 60 }"
+            >
+              This field cannot be longer than 60 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.gender" for="field_gender">Gender</label>
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null">{{ 'psApp.Gender.null' | translate }}</option>
+            <option *ngFor="let gender of genderValues" [value]="gender">{{ 'psApp.Gender.' + gender | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.birthDate" for="field_birthDate">Birth Date</label>
+          <div class="input-group">
+            <input
+              id="field_birthDate"
+              data-cy="birthDate"
+              type="text"
+              class="form-control"
+              name="birthDate"
+              ngbDatepicker
+              #birthDateDp="ngbDatepicker"
+              formControlName="birthDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.mobileNumber" for="field_mobileNumber">Mobile Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="mobileNumber"
+            id="field_mobileNumber"
+            data-cy="mobileNumber"
+            formControlName="mobileNumber"
+          />
+          <div
+            *ngIf="editForm.get('mobileNumber')!.invalid && (editForm.get('mobileNumber')!.dirty || editForm.get('mobileNumber')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('mobileNumber')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 20 }"
+            >
+              This field cannot be longer than 20 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('email')?.errors?.minlength"
+              sysTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 5 }"
+            >
+              This field is required to be at least 5 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('email')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 75 }"
+            >
+              This field cannot be longer than 75 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.isTemporaryPassword" for="field_isTemporaryPassword"
+            >Is Temporary Password</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isTemporaryPassword"
+            id="field_isTemporaryPassword"
+            data-cy="isTemporaryPassword"
+            formControlName="isTemporaryPassword"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.profileImageUrl" for="field_profileImageUrl">Profile Image Url</label>
+          <input
+            type="text"
+            class="form-control"
+            name="profileImageUrl"
+            id="field_profileImageUrl"
+            data-cy="profileImageUrl"
+            formControlName="profileImageUrl"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.notes" for="field_notes">Notes</label>
+          <textarea class="form-control" name="notes" id="field_notes" data-cy="notes" formControlName="notes"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.user" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
+              *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
+            >
+              {{ userOption.login }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.party.partyType" for="field_partyType">Party Type</label>
+          <select class="form-control" id="field_partyType" data-cy="partyType" name="partyType" formControlName="partyType">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="partyTypeOption.id === editForm.get('partyType')!.value?.id ? editForm.get('partyType')!.value : partyTypeOption"
+              *ngFor="let partyTypeOption of partyTypesSharedCollection; trackBy: trackPartyTypeById"
+            >
+              {{ partyTypeOption.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span sysTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span sysTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

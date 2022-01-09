@@ -1,0 +1,25 @@
+{
+  "psApp": {
+    "partyType": {
+      "home": {
+        "title": "Party Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Party Type",
+        "createOrEditLabel": "Create or edit a Party Type",
+        "notFound": "No Party Types found"
+      },
+      "created": "A new Party Type is created with identifier {{ param }}",
+      "updated": "A Party Type is updated with identifier {{ param }}",
+      "deleted": "A Party Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Party Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Party Type"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "psApp": {
+    "party": {
+      "home": {
+        "title": "Parties",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "కొత్త Party  సృష్టించండి",
+        "createOrEditLabel": "Party సృష్టించండి లేదా సవరించండి",
+        "notFound": "No Parties found"
+      },
+      "created": "{{ param }} ఐడీ తో ఒక కొత్త Party సృష్టించబడినది",
+      "updated": "{{ param }} ఐడీ తో ఒక కొత్త Party సవరించబడినది",
+      "deleted": "{{ param }} ఐడీ తో ఒక కొత్త Party తొలగించబడినది",
+      "delete": {
+        "question": "మీరు Party {{ id }} ఖచ్చితంగా తొలగించాలనుకుంటున్నారా?"
+      },
+      "detail": {
+        "title": "Party"
+      },
+      "id": "ID",
+      "firstName": "First Name",
+      "middleName": "Middle Name",
+      "lastName": "Last Name",
+      "gender": "Gender",
+      "birthDate": "Birth Date",
+      "mobileNumber": "Mobile Number",
+      "email": "Email",
+      "isTemporaryPassword": "Is Temporary Password",
+      "profileImageUrl": "Profile Image Url",
+      "notes": "Notes",
+      "user": "User",
+      "partyType": "Party Type"
+    }
+  }
+}

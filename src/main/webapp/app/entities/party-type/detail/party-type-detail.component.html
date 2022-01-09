@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="partyType">
+      <h2 data-cy="partyTypeDetailsHeading"><span sysTranslate="psApp.partyType.detail.title">Party Type</span></h2>
+
+      <hr />
+
+      <sys-alert-error></sys-alert-error>
+
+      <sys-alert></sys-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span sysTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ partyType.id }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.partyType.name">Name</span></dt>
+        <dd>
+          <span>{{ partyType.name }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.partyType.description">Description</span></dt>
+        <dd>
+          <span>{{ partyType.description }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span sysTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/party-type', partyType.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span sysTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

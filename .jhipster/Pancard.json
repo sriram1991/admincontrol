@@ -1,0 +1,76 @@
+{
+  "name": "Pancard",
+  "fields": [
+    {
+      "fieldName": "panNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "15"
+    },
+    {
+      "fieldName": "aadhaarNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "12"
+    },
+    {
+      "fieldName": "aadhaarName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "birthDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "imageUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "postalAddress",
+      "otherEntityRelationshipName": "pancard",
+      "relationshipName": "postalAddress"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "status",
+      "otherEntityRelationshipName": "pancard",
+      "relationshipName": "status",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "party",
+      "otherEntityRelationshipName": "pancard",
+      "relationshipName": "party"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "pancard",
+      "relationshipName": "modified"
+    }
+  ],
+  "entityTableName": "pancard",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["ps"],
+  "changelogDate": "20220109090320"
+}

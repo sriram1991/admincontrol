@@ -1,0 +1,25 @@
+{
+  "psApp": {
+    "statusCategory": {
+      "home": {
+        "title": "Status Categories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "కొత్త Status Category  సృష్టించండి",
+        "createOrEditLabel": "Status Category సృష్టించండి లేదా సవరించండి",
+        "notFound": "No Status Categories found"
+      },
+      "created": "{{ param }} ఐడీ తో ఒక కొత్త Status Category సృష్టించబడినది",
+      "updated": "{{ param }} ఐడీ తో ఒక కొత్త Status Category సవరించబడినది",
+      "deleted": "{{ param }} ఐడీ తో ఒక కొత్త Status Category తొలగించబడినది",
+      "delete": {
+        "question": "మీరు Status Category {{ id }} ఖచ్చితంగా తొలగించాలనుకుంటున్నారా?"
+      },
+      "detail": {
+        "title": "Status Category"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description"
+    }
+  }
+}

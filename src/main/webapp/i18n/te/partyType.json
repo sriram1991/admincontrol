@@ -1,0 +1,25 @@
+{
+  "psApp": {
+    "partyType": {
+      "home": {
+        "title": "Party Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "కొత్త Party Type  సృష్టించండి",
+        "createOrEditLabel": "Party Type సృష్టించండి లేదా సవరించండి",
+        "notFound": "No Party Types found"
+      },
+      "created": "{{ param }} ఐడీ తో ఒక కొత్త Party Type సృష్టించబడినది",
+      "updated": "{{ param }} ఐడీ తో ఒక కొత్త Party Type సవరించబడినది",
+      "deleted": "{{ param }} ఐడీ తో ఒక కొత్త Party Type తొలగించబడినది",
+      "delete": {
+        "question": "మీరు Party Type {{ id }} ఖచ్చితంగా తొలగించాలనుకుంటున్నారా?"
+      },
+      "detail": {
+        "title": "Party Type"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description"
+    }
+  }
+}

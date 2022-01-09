@@ -1,0 +1,34 @@
+{
+  "psApp": {
+    "pancard": {
+      "home": {
+        "title": "Pancards",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Pancard",
+        "createOrEditLabel": "Create or edit a Pancard",
+        "notFound": "No Pancards found"
+      },
+      "created": "A new Pancard is created with identifier {{ param }}",
+      "updated": "A Pancard is updated with identifier {{ param }}",
+      "deleted": "A Pancard is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Pancard {{ id }}?"
+      },
+      "detail": {
+        "title": "Pancard"
+      },
+      "id": "ID",
+      "panNumber": "Pan Number",
+      "aadhaarNumber": "Aadhaar Number",
+      "aadhaarName": "Aadhaar Name",
+      "birthDate": "Birth Date",
+      "imageUrl": "Image Url",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "postalAddress": "Postal Address",
+      "status": "Status",
+      "party": "Party",
+      "modified": "Modified"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="postalAddress">
+      <h2 data-cy="postalAddressDetailsHeading"><span sysTranslate="psApp.postalAddress.detail.title">Postal Address</span></h2>
+
+      <hr />
+
+      <sys-alert-error></sys-alert-error>
+
+      <sys-alert></sys-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span sysTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ postalAddress.id }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.postalAddress.toName">To Name</span></dt>
+        <dd>
+          <span>{{ postalAddress.toName }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.postalAddress.address1">Address 1</span></dt>
+        <dd>
+          <span>{{ postalAddress.address1 }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.postalAddress.address2">Address 2</span></dt>
+        <dd>
+          <span>{{ postalAddress.address2 }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.postalAddress.city">City</span></dt>
+        <dd>
+          <span>{{ postalAddress.city }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.postalAddress.landmark">Landmark</span></dt>
+        <dd>
+          <span>{{ postalAddress.landmark }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.postalAddress.postalCode">Postal Code</span></dt>
+        <dd>
+          <span>{{ postalAddress.postalCode }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.postalAddress.isIndianAddress">Is Indian Address</span></dt>
+        <dd>
+          <span>{{ postalAddress.isIndianAddress }}</span>
+        </dd>
+        <dt><span sysTranslate="psApp.postalAddress.note">Note</span></dt>
+        <dd>
+          <span>{{ postalAddress.note }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span sysTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/postal-address', postalAddress.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span sysTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

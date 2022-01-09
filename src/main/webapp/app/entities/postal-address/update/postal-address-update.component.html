@@ -1,0 +1,164 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="sys-postal-address-heading"
+        data-cy="PostalAddressCreateUpdateHeading"
+        sysTranslate="psApp.postalAddress.home.createOrEditLabel"
+      >
+        Create or edit a Postal Address
+      </h2>
+
+      <div>
+        <sys-alert-error></sys-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" sysTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.postalAddress.toName" for="field_toName">To Name</label>
+          <input type="text" class="form-control" name="toName" id="field_toName" data-cy="toName" formControlName="toName" />
+          <div *ngIf="editForm.get('toName')!.invalid && (editForm.get('toName')!.dirty || editForm.get('toName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('toName')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.postalAddress.address1" for="field_address1">Address 1</label>
+          <input type="text" class="form-control" name="address1" id="field_address1" data-cy="address1" formControlName="address1" />
+          <div *ngIf="editForm.get('address1')!.invalid && (editForm.get('address1')!.dirty || editForm.get('address1')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('address1')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 200 }"
+            >
+              This field cannot be longer than 200 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.postalAddress.address2" for="field_address2">Address 2</label>
+          <input type="text" class="form-control" name="address2" id="field_address2" data-cy="address2" formControlName="address2" />
+          <div *ngIf="editForm.get('address2')!.invalid && (editForm.get('address2')!.dirty || editForm.get('address2')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('address2')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 200 }"
+            >
+              This field cannot be longer than 200 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.postalAddress.city" for="field_city">City</label>
+          <input type="text" class="form-control" name="city" id="field_city" data-cy="city" formControlName="city" />
+          <div *ngIf="editForm.get('city')!.invalid && (editForm.get('city')!.dirty || editForm.get('city')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('city')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 60 }"
+            >
+              This field cannot be longer than 60 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.postalAddress.landmark" for="field_landmark">Landmark</label>
+          <input type="text" class="form-control" name="landmark" id="field_landmark" data-cy="landmark" formControlName="landmark" />
+          <div *ngIf="editForm.get('landmark')!.invalid && (editForm.get('landmark')!.dirty || editForm.get('landmark')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('landmark')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 60 }"
+            >
+              This field cannot be longer than 60 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.postalAddress.postalCode" for="field_postalCode">Postal Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="postalCode"
+            id="field_postalCode"
+            data-cy="postalCode"
+            formControlName="postalCode"
+          />
+          <div *ngIf="editForm.get('postalCode')!.invalid && (editForm.get('postalCode')!.dirty || editForm.get('postalCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('postalCode')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 10 }"
+            >
+              This field cannot be longer than 10 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.postalAddress.isIndianAddress" for="field_isIndianAddress"
+            >Is Indian Address</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isIndianAddress"
+            id="field_isIndianAddress"
+            data-cy="isIndianAddress"
+            formControlName="isIndianAddress"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.postalAddress.note" for="field_note">Note</label>
+          <input type="text" class="form-control" name="note" id="field_note" data-cy="note" formControlName="note" />
+          <div *ngIf="editForm.get('note')!.invalid && (editForm.get('note')!.dirty || editForm.get('note')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('note')?.errors?.maxlength"
+              sysTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 255 }"
+            >
+              This field cannot be longer than 255 characters.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span sysTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span sysTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

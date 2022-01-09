@@ -1,0 +1,27 @@
+{
+  "psApp": {
+    "status": {
+      "home": {
+        "title": "Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Status बनाएँ",
+        "createOrEditLabel": "Status बनाएँ या संपादित करें",
+        "notFound": "No Statuses found"
+      },
+      "created": "एक नया Status [identifier: {{ param }}] तैयार है",
+      "updated": "एक Status [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Status [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Status [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Status"
+      },
+      "id": "ID",
+      "name": "Name",
+      "sequenceNo": "Sequence No",
+      "description": "Description",
+      "category": "Category"
+    }
+  }
+}
