@@ -107,6 +107,7 @@
           <div class="d-flex">
             <input
               id="field_createdAt"
+              [readonly]="true"
               data-cy="createdAt"
               type="datetime-local"
               class="form-control"
@@ -127,6 +128,7 @@
               class="form-control"
               name="updatedAt"
               formControlName="updatedAt"
+              [readonly]="true"
               placeholder="YYYY-MM-DD HH:mm"
             />
           </div>
@@ -150,7 +152,7 @@
               "
               *ngFor="let postalAddressOption of postalAddressesSharedCollection; trackBy: trackPostalAddressById"
             >
-              {{ postalAddressOption.id }}
+              {{ postalAddressOption.toName }}
             </option>
           </select>
         </div>
