@@ -8,10 +8,10 @@
       <div>
         <sys-alert-error></sys-alert-error>
 
-        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+        <!-- <div class="form-group" [hidden]="editForm.get('id')!.value == null">
           <label class="form-control-label" sysTranslate="global.field.id" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
+        </div> -->
 
         <div class="form-group">
           <label class="form-control-label" sysTranslate="psApp.pancard.panNumber" for="field_panNumber">Pan Number</label>
@@ -102,37 +102,23 @@
           <input type="text" class="form-control" name="imageUrl" id="field_imageUrl" data-cy="imageUrl" formControlName="imageUrl" />
         </div>
 
-        <div class="form-group">
-          <label class="form-control-label" sysTranslate="psApp.pancard.createdAt" for="field_createdAt">Created At</label>
+        <!-- <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.pancard.createdAt" for="field_createdAt">Created
+            At</label>
           <div class="d-flex">
-            <input
-              id="field_createdAt"
-              [readonly]="true"
-              data-cy="createdAt"
-              type="datetime-local"
-              class="form-control"
-              name="createdAt"
-              formControlName="createdAt"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
+            <input id="field_createdAt" [readonly]="true" data-cy="createdAt" type="datetime-local" class="form-control"
+              name="createdAt" formControlName="createdAt" placeholder="YYYY-MM-DD HH:mm" />
           </div>
-        </div>
+        </div> -->
 
-        <div class="form-group">
-          <label class="form-control-label" sysTranslate="psApp.pancard.updatedAt" for="field_updatedAt">Updated At</label>
+        <!-- <div class="form-group">
+          <label class="form-control-label" sysTranslate="psApp.pancard.updatedAt" for="field_updatedAt">Updated
+            At</label>
           <div class="d-flex">
-            <input
-              id="field_updatedAt"
-              data-cy="updatedAt"
-              type="datetime-local"
-              class="form-control"
-              name="updatedAt"
-              formControlName="updatedAt"
-              [readonly]="true"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
+            <input id="field_updatedAt" data-cy="updatedAt" type="datetime-local" class="form-control" name="updatedAt"
+              formControlName="updatedAt" placeholder="YYYY-MM-DD HH:mm" />
           </div>
-        </div>
+        </div> -->
 
         <div class="form-group">
           <label class="form-control-label" sysTranslate="psApp.pancard.postalAddress" for="field_postalAddress">Postal Address</label>
